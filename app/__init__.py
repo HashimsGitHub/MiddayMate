@@ -9,9 +9,9 @@ def create_app(config_name='development'):
     """Application factory pattern."""
     # Get the root path for static files
     root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    frontend_path = os.path.join(root_path, 'frontend')
+    static_path = os.path.join(root_path, 'frontend', 'dist')
 
-    app = Flask(__name__, template_folder=frontend_path)
+    app = Flask(__name__, static_folder=static_path, static_url_path='')
 
     # Load configuration
     if config_name == 'production':
@@ -43,21 +43,17 @@ def create_app(config_name='development'):
     def health_check():
         return {'status': 'healthy'}, 200
 
-    # Serve index.html for root path
-    @app.route('/', methods=['GET'])
-    def index():
-        from flask import render_template
-        return render_template('index.html')
-
-    # Serve CSS files
-    @app.route('/css/<path:filename>')
-    def serve_css(filename):
-        return send_from_directory(os.path.join(frontend_path, 'css'), filename)
-
-    # Serve JS files
-    @app.route('/js/<path:filename>')
-    def serve_js(filename):
-        return send_from_directory(os.path.join(frontend_path, 'js'), filename)
+    # Serve React app
+    @app.route('/', defaults={'path': ''})
+    @app.route('/<path:path>')
+    def serve_react(path):
+        index_path = os.path.join(static_path, 'index.html')
+        if path and os.path.exists(os.path.join(static_path, path)):
+            return send_from_directory(static_path, path)
+        elif os.path.exists(index_path):
+            return send_from_directory(static_path, 'index.html')
+        else:
+            return {'error': 'React app not built. Run "npm run build"'}, 404
 
     # Create tables
     with app.app_context():

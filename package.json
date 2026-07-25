@@ -1,0 +1,33 @@
+{
+  "name": "middaymate",
+  "version": "1.0.0",
+  "description": "> **M2 Find Someone New.**",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HashimsGitHub/MiddayMate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/HashimsGitHub/MiddayMate/issues"
+  },
+  "homepage": "https://github.com/HashimsGitHub/MiddayMate#readme",
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "vite": "^8.1.5"
+  }
+}
