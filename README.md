@@ -1,6 +1,6 @@
-# MiddayMate (M²)
+# MiddayMate (M2)
 
-> **Meet. Eat. Connect.**
+> **M2 Find Someone New.**
 
 MiddayMate is a location-based hospitality engagement platform that connects busy CBD professionals with nearby cafés and restaurants while making it easy to discover people who are available to meet during coffee and lunch breaks.
 
