@@ -9,7 +9,8 @@ COPY package*.json ./
 # Install dependencies
 RUN npm ci
 
-# Copy source code
+# Copy source code and config
+COPY index.html ./
 COPY src ./src
 COPY vite.config.js ./
 
