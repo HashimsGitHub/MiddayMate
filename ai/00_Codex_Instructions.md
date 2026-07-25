@@ -23,3 +23,42 @@ MiddayMate is a location-based hospitality engagement platform for CBD professio
 - Prioritize nearby venue discovery and promotion browsing.
 - Keep API endpoints RESTful and predictable.
 - Write clear comments where business logic is non-obvious.
+
+## Guidelines
+You are building MiddayMate.
+
+Always prefer simplicity over cleverness.
+
+Do not introduce frameworks unless requested.
+
+Frontend must remain HTML/CSS/Vanilla JavaScript.
+
+Backend must remain Flask.
+
+Never introduce React.
+
+Never introduce Angular.
+
+Never introduce Vue.
+
+Keep everything Azure Container Apps compatible.
+
+The project must run in one Docker container.
+
+Use SQLAlchemy ORM.
+
+Use Flask Blueprints.
+
+Follow MVC.
+
+Write production-quality code.
+
+Write unit tests.
+
+Write docstrings.
+
+Avoid duplicate code.
+
+Do not over-engineer.
+
+Build features incrementally.
