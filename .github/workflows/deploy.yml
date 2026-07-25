@@ -4,10 +4,13 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'frontend/**'
+      - 'src/**'
+      - 'public/**'
       - 'app/**'
       - 'Dockerfile'
       - 'requirements.txt'
+      - 'package.json'
+      - 'vite.config.js'
       - '.github/workflows/deploy.yml'
 
 env:
