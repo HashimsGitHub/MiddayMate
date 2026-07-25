@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiddayMate - Find Someone New</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-brand">
+                    <h1>MiddayMate</h1>
+                    <p class="tagline">Find Someone New</p>
+                </div>
+                <div class="navbar-menu" id="navbarMenu">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#venues" class="nav-link">Venues</a>
+                    <a href="#profile" class="nav-link" id="profileLink" style="display: none;">Profile</a>
+                    <button id="authBtn" class="btn btn-primary">Sign In</button>
+                    <button id="logoutBtn" class="btn btn-secondary" style="display: none;">Sign Out</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Meet Someone New During Your Break</h2>
+                <p>Discover nearby venues, browse promotions, and arrange spontaneous coffee or lunch meetups.</p>
+                <button id="getStartedBtn" class="btn btn-primary btn-large">Get Started</button>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="container">
+            <!-- Auth Section -->
+            <section id="authSection" class="auth-section">
+                <div class="auth-card">
+                    <h3>Sign In to MiddayMate</h3>
+                    <button id="microsoftLoginBtn" class="btn btn-login btn-microsoft">
+                        Sign in with Microsoft
+                    </button>
+                    <button id="googleLoginBtn" class="btn btn-login btn-google">
+                        Sign in with Google
+                    </button>
+                </div>
+            </section>
+
+            <!-- Venues Section -->
+            <section id="venuesSection" class="venues-section" style="display: none;">
+                <h3>Nearby Venues</h3>
+                <div class="filters">
+                    <input type="text" id="searchInput" placeholder="Search venues...">
+                    <button id="filterBtn" class="btn btn-secondary">Filter</button>
+                </div>
+                <div id="venuesList" class="venues-grid">
+                    <!-- Venues will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profileSection" class="profile-section" style="display: none;">
+                <div class="profile-card">
+                    <h3>My Profile</h3>
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bio">Bio:</label>
+                            <textarea id="bio" name="bio" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="availability">Availability:</label>
+                            <select id="availability" name="availability">
+                                <option value="available">Available</option>
+                                <option value="busy">Busy</option>
+                                <option value="away">Away</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Profile</button>
+                    </form>
+                </div>
+
+                <!-- Invitations Section -->
+                <div class="invitations-card">
+                    <h3>Invitations</h3>
+                    <div id="invitationsList">
+                        <!-- Invitations will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Chat Section -->
+                <div class="chat-card">
+                    <h3>Messages</h3>
+                    <div id="chatList">
+                        <!-- Chats will be loaded here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 MiddayMate. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
