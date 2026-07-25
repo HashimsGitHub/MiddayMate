@@ -1,13 +1,18 @@
 :root {
-    --primary-color: #2563eb;
-    --primary-dark: #1e40af;
-    --secondary-color: #64748b;
-    --success-color: #10b981;
-    --danger-color: #ef4444;
-    --light-bg: #f8fafc;
-    --border-color: #e2e8f0;
-    --text-primary: #1f2937;
-    --text-secondary: #6b7280;
+    --bg-dark: #0f1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #1c2128;
+    --chrome-light: #e8e8e8;
+    --chrome-mid: #c0c0c0;
+    --chrome-dark: #808080;
+    --accent-gold: #b8956a;
+    --accent-gold-light: #d4af94;
+    --text-primary: #e8e8e8;
+    --text-secondary: #8b949e;
+    --border-chrome: rgba(192, 192, 192, 0.2);
+    --border-chrome-hover: rgba(192, 192, 192, 0.4);
+    --success-color: #3fb950;
+    --danger-color: #f85149;
 }
 
 * {
@@ -17,10 +22,11 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
-    background-color: #ffffff;
+    background-color: var(--bg-dark);
+    font-weight: 400;
 }
 
 .container {
@@ -31,12 +37,13 @@ body {
 
 /* Navbar */
 .navbar {
-    background-color: #ffffff;
-    border-bottom: 1px solid var(--border-color);
+    background: rgba(15, 17, 23, 0.95);
+    border-bottom: 1px solid var(--border-chrome);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .navbar-container {
@@ -50,14 +57,20 @@ body {
 
 .navbar-brand h1 {
     font-size: 1.5rem;
-    color: var(--primary-color);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, var(--chrome-light) 0%, var(--accent-gold-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin: 0;
 }
 
 .navbar-brand .tagline {
     font-size: 0.75rem;
-    color: var(--text-secondary);
+    color: var(--accent-gold);
     margin: 0;
+    letter-spacing: 0.5px;
 }
 
 .navbar-menu {
@@ -67,13 +80,15 @@ body {
 }
 
 .nav-link {
-    color: var(--text-primary);
+    color: var(--text-secondary);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 500;
 }
 
 .nav-link:hover {
-    color: var(--primary-color);
+    color: var(--chrome-light);
 }
 
 /* Buttons */
@@ -83,30 +98,38 @@ body {
     border-radius: 0.5rem;
     font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
 .btn-primary {
-    background-color: var(--primary-color);
-    color: #ffffff;
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+    color: var(--bg-dark);
+    box-shadow: 0 4px 15px rgba(184, 149, 106, 0.3);
+    border: none;
 }
 
 .btn-primary:hover {
-    background-color: var(--primary-dark);
+    box-shadow: 0 6px 20px rgba(184, 149, 106, 0.5);
+    transform: translateY(-2px);
 }
 
 .btn-secondary {
-    background-color: var(--secondary-color);
-    color: #ffffff;
+    background-color: transparent;
+    color: var(--chrome-light);
+    border: 1.5px solid var(--border-chrome);
+    box-shadow: inset 0 0 20px rgba(192, 192, 192, 0.05);
 }
 
 .btn-secondary:hover {
-    background-color: #475569;
+    background-color: rgba(192, 192, 192, 0.08);
+    border-color: var(--border-chrome-hover);
+    box-shadow: inset 0 0 20px rgba(192, 192, 192, 0.1), 0 0 15px rgba(192, 192, 192, 0.1);
 }
 
 .btn-large {
-    padding: 1rem 2rem;
+    padding: 1rem 2.5rem;
     font-size: 1.1rem;
 }
 
@@ -114,44 +137,72 @@ body {
     width: 100%;
     margin-bottom: 1rem;
     padding: 1rem;
-    border: 1px solid var(--border-color);
-    background-color: #ffffff;
+    border: 1.5px solid var(--border-chrome);
+    background: rgba(22, 27, 34, 0.5);
     color: var(--text-primary);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
 }
 
 .btn-login:hover {
-    background-color: var(--light-bg);
+    background-color: rgba(28, 33, 40, 0.8);
+    border-color: var(--border-chrome-hover);
+    box-shadow: 0 0 20px rgba(192, 192, 192, 0.1);
 }
 
 .btn-microsoft {
+    border-color: rgba(0, 164, 239, 0.3);
+}
+
+.btn-microsoft:hover {
     border-color: #00a4ef;
+    box-shadow: 0 0 20px rgba(0, 164, 239, 0.2);
 }
 
 .btn-google {
+    border-color: rgba(66, 133, 244, 0.3);
+}
+
+.btn-google:hover {
     border-color: #4285f4;
+    box-shadow: 0 0 20px rgba(66, 133, 244, 0.2);
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    position: relative;
+    background: linear-gradient(rgba(15, 17, 23, 0.7), rgba(15, 17, 23, 0.85)),
+                url('https://middaymatesa.blob.core.windows.net/images/a-business-executive-couple-by-a-large-window-in-the-office-at-sunset-taking-a-break-from-work-ai-generated-photo.jpeg') center/cover;
     color: #ffffff;
-    padding: 6rem 2rem;
+    padding: 8rem 2rem;
     text-align: center;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 /* Sections */
@@ -163,29 +214,35 @@ section h3 {
     font-size: 1.75rem;
     margin-bottom: 1.5rem;
     color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 /* Auth Section */
 .auth-section {
     max-width: 400px;
     margin: 3rem auto;
+    padding: 2rem;
 }
 
 .auth-card {
-    background-color: var(--light-bg);
-    padding: 2rem;
+    background: rgba(28, 33, 40, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 2.5rem;
     border-radius: 0.75rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-chrome);
+    box-shadow: inset 0 0 40px rgba(192, 192, 192, 0.05), 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .auth-card h3 {
     text-align: center;
     margin-bottom: 2rem;
+    color: var(--chrome-light);
 }
 
 /* Venues Section */
 .venues-section {
-    padding: 2rem;
+    padding: 3rem 2rem;
 }
 
 .filters {
@@ -196,9 +253,24 @@ section h3 {
 
 .filters input {
     flex: 1;
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-chrome);
     border-radius: 0.5rem;
+    background-color: rgba(22, 27, 34, 0.5);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.filters input::placeholder {
+    color: var(--text-secondary);
+}
+
+.filters input:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    background-color: rgba(22, 27, 34, 0.8);
+    box-shadow: 0 0 12px rgba(184, 149, 106, 0.2);
 }
 
 .venues-grid {
@@ -208,23 +280,35 @@ section h3 {
 }
 
 .venue-card {
-    background-color: #ffffff;
-    border: 1px solid var(--border-color);
+    background: rgba(22, 27, 34, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-chrome);
     border-radius: 0.75rem;
     overflow: hidden;
-    transition: box-shadow 0.3s;
+    transition: all 0.3s ease;
     cursor: pointer;
+    box-shadow: inset 0 0 30px rgba(192, 192, 192, 0.03), 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .venue-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--accent-gold);
+    box-shadow: inset 0 0 30px rgba(192, 192, 192, 0.05), 0 8px 25px rgba(184, 149, 106, 0.2);
+    transform: translateY(-4px);
 }
 
 .venue-image {
     width: 100%;
     height: 200px;
-    background-color: var(--light-bg);
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
     object-fit: cover;
+    position: relative;
+}
+
+.venue-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 .venue-content {
@@ -233,21 +317,24 @@ section h3 {
 
 .venue-name {
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 0.5rem;
+    color: var(--chrome-light);
+    letter-spacing: -0.3px;
 }
 
 .venue-address {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+    color: var(--accent-gold);
+    font-size: 0.85rem;
     margin-bottom: 1rem;
+    font-weight: 500;
 }
 
 .venue-description {
     color: var(--text-secondary);
     font-size: 0.9rem;
     margin-bottom: 1rem;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 .venue-actions {
@@ -257,24 +344,33 @@ section h3 {
 
 .venue-actions button {
     flex: 1;
-    padding: 0.5rem;
-    font-size: 0.9rem;
+    padding: 0.6rem;
+    font-size: 0.85rem;
 }
 
 /* Profile Section */
 .profile-section {
     max-width: 600px;
     margin: 2rem auto;
+    padding: 0 2rem;
 }
 
 .profile-card,
 .invitations-card,
 .chat-card {
-    background-color: var(--light-bg);
+    background: rgba(22, 27, 34, 0.5);
+    backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 0.75rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-chrome);
     margin-bottom: 2rem;
+    box-shadow: inset 0 0 40px rgba(192, 192, 192, 0.05), 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.profile-card h3,
+.invitations-card h3,
+.chat-card h3 {
+    color: var(--chrome-light);
 }
 
 .form-group {
@@ -284,46 +380,67 @@ section h3 {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    font-weight: 500;
+    font-weight: 600;
+    color: var(--chrome-light);
+    letter-spacing: 0.3px;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-chrome);
     border-radius: 0.5rem;
     font-family: inherit;
     font-size: 1rem;
+    background-color: rgba(15, 17, 23, 0.5);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-secondary);
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    border-color: var(--accent-gold);
+    background-color: rgba(15, 17, 23, 0.8);
+    box-shadow: 0 0 12px rgba(184, 149, 106, 0.2);
 }
 
 /* Invitations */
 .invitation-item {
-    background-color: #ffffff;
+    background: rgba(28, 33, 40, 0.6);
     padding: 1rem;
     border-radius: 0.5rem;
-    border-left: 4px solid var(--primary-color);
+    border-left: 3px solid var(--accent-gold);
     margin-bottom: 1rem;
+    border: 1px solid var(--border-chrome);
+    border-left: 3px solid var(--accent-gold);
+    transition: all 0.3s ease;
+}
+
+.invitation-item:hover {
+    background: rgba(28, 33, 40, 0.8);
+    box-shadow: 0 4px 12px rgba(184, 149, 106, 0.1);
 }
 
 .invitation-sender {
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 0.5rem;
+    color: var(--chrome-light);
 }
 
 .invitation-venue {
-    color: var(--text-secondary);
+    color: var(--accent-gold);
     font-size: 0.9rem;
     margin-bottom: 1rem;
+    font-weight: 500;
 }
 
 .invitation-actions {
@@ -334,16 +451,19 @@ section h3 {
 .invitation-actions button {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
+    flex: 1;
 }
 
 /* Footer */
 .footer {
-    background-color: var(--light-bg);
-    border-top: 1px solid var(--border-color);
+    background: rgba(15, 17, 23, 0.95);
+    border-top: 1px solid var(--border-chrome);
     padding: 2rem;
     text-align: center;
     color: var(--text-secondary);
     margin-top: 4rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
 }
 
 /* Responsive */
@@ -352,15 +472,19 @@ section h3 {
         gap: 1rem;
     }
 
+    .navbar-brand h1 {
+        font-size: 1.2rem;
+    }
+
     .hero-content h2 {
-        font-size: 1.75rem;
+        font-size: 2.2rem;
     }
 
     .venues-grid {
         grid-template-columns: 1fr;
     }
 
-    .navbar-brand h1 {
-        font-size: 1.2rem;
+    .filters {
+        flex-direction: column;
     }
 }
