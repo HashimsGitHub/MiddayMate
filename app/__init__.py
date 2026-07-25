@@ -12,7 +12,7 @@ def create_app(config_name='development'):
     static_folder = os.path.join(root_path, 'frontend')
     template_folder = os.path.join(root_path, 'frontend')
 
-    app = Flask(__name__, static_folder=static_folder, template_folder=template_folder)
+    app = Flask(__name__, static_folder=static_folder, static_url_path='', template_folder=template_folder)
 
     # Load configuration
     if config_name == 'production':
@@ -49,6 +49,18 @@ def create_app(config_name='development'):
     def index():
         from flask import render_template
         return render_template('index.html')
+
+    # Serve CSS files
+    @app.route('/css/<path:filename>')
+    def serve_css(filename):
+        from flask import send_from_directory
+        return send_from_directory(os.path.join(static_folder, 'css'), filename)
+
+    # Serve JS files
+    @app.route('/js/<path:filename>')
+    def serve_js(filename):
+        from flask import send_from_directory
+        return send_from_directory(os.path.join(static_folder, 'js'), filename)
 
     # Create tables
     with app.app_context():
