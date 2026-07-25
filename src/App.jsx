@@ -25,12 +25,7 @@ function App() {
   }, [currentUser])
 
   const initializeApp = async () => {
-    // Try to seed database on first load
-    try {
-      await fetch('/api/seed/populate', { method: 'POST' })
-    } catch (e) {
-      console.log('Database already seeded or seed endpoint not available')
-    }
+    // Database is auto-seeded on server startup if needed
     checkAuthStatus()
   }
 
