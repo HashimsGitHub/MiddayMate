@@ -204,9 +204,8 @@ Project documentation is located in the **/docs** directory.
 * Database Design
 * API Specification
 * UI / UX Guidelines
-* Development Roadmap
-* Coding Standards
-* Future Ideas
+
+
 
 ---
 
@@ -218,21 +217,6 @@ The first release focuses on validating three core outcomes:
 * Professionals arrange real-world coffee or lunch meetups.
 * Hospitality venues increase weekday customer traffic through targeted campaigns.
 
----
-
-# Future Roadmap
-
-* Native iOS application
-* Native Android application
-* Push notifications
-* QR code promotion redemption
-* Digital loyalty programs
-* Table reservations
-* Event promotions
-* Vendor CRM tools
-* Multi-city support
-* Azure SQL migration
-* Azure Kubernetes Service (AKS) for large-scale deployment
 
 ---
 
