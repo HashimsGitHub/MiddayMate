@@ -28,7 +28,7 @@ def create_app(config_name='development'):
     CORS(app)
 
     # Register blueprints
-    from app.routes import auth, users, venues, promotions, invitations, messages, vendors
+    from app.routes import auth, users, venues, promotions, invitations, messages, vendors, seed
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(users.bp)
@@ -37,6 +37,7 @@ def create_app(config_name='development'):
     app.register_blueprint(invitations.bp)
     app.register_blueprint(messages.bp)
     app.register_blueprint(vendors.bp)
+    app.register_blueprint(seed.bp)
 
     # Health check endpoint
     @app.route('/health', methods=['GET'])

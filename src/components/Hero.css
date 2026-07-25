@@ -30,6 +30,13 @@
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
 
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 768px) {
   .hero-content h2 {
     font-size: 2.2rem;

@@ -1,12 +1,15 @@
 import './Hero.css'
 
-export default function Hero({ onGetStarted }) {
+export default function Hero({ onGetStarted, onDemoMode }) {
   return (
     <section className="hero">
       <div className="hero-content">
         <h2>Meet Someone New During Your Break</h2>
         <p>Discover nearby venues, browse exclusive promotions, and connect with professionals in your network.</p>
-        <button className="btn btn-primary btn-large" onClick={onGetStarted}>Explore Now</button>
+        <div className="hero-buttons">
+          <button className="btn btn-primary btn-large" onClick={onGetStarted}>Explore Now</button>
+          <button className="btn btn-secondary btn-large" onClick={onDemoMode}>🎬 Watch Demo</button>
+        </div>
       </div>
     </section>
   )
