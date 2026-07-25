@@ -67,7 +67,8 @@ export default function DemoMode({ onClose }) {
       meeting: {
         venue: "The Espresso Bar",
         users: ["Sarah Johnson", "Jake Thompson"],
-        status: "Connected ✓"
+        status: "Connected ✓",
+        image: "https://middaymatesa.blob.core.windows.net/images/CoffeeFirstDate.png"
       },
       action: "Finish Demo"
     },
@@ -159,6 +160,9 @@ export default function DemoMode({ onClose }) {
           {/* Step 7: Meeting */}
           {current.meeting && (
             <div className="demo-meeting">
+              {current.meeting.image && (
+                <img src={current.meeting.image} alt="Meeting" className="meeting-image" />
+              )}
               <h3>📍 {current.meeting.venue}</h3>
               <div className="meeting-users">
                 {current.meeting.users.map((user, idx) => (
