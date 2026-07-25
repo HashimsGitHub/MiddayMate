@@ -1,40 +1,259 @@
 # MiddayMate (M²)
 
-> Dating for Professionals, Over Coffee.
+> **Meet. Eat. Connect.**
 
-MiddayMate is a location-based dating platform designed specifically for busy professionals working in Central Business Districts (CBDs).
+MiddayMate is a location-based hospitality engagement platform that connects busy CBD professionals with nearby cafés and restaurants while making it easy to discover people who are available to meet during coffee and lunch breaks.
 
-Unlike traditional dating applications, MiddayMate encourages real-world meetings during office hours over coffee or lunch.
+Unlike traditional social or dating applications, MiddayMate is built around **venues and promotions first**, with people and conversations naturally following.
 
-The platform also enables cafés and restaurants to promote their venues, campaigns and exclusive "Dating Discounts" to attract new customers.
-<img width="1023" height="700" alt="a-business-executive-couple-by-a-large-window-in-the-office-at-sunset-taking-a-break-from-work-ai-generated-photo" src="https://github.com/user-attachments/assets/f1afecb9-a8dc-4aa2-a377-e15dce1e4feb" />
+---
 
-## Documentation
+# Vision
 
-See the `/docs` folder.
+Our vision is to become the preferred lunchtime and coffee-break platform for professionals working in Central Business Districts (CBDs).
 
-1. Project Vision
-2. Business Model
-3. Product Requirements
-4. System Architecture
-5. Database Design
-6. API Specification
-7. UI / UX Guidelines
-8. Development Roadmap
-9. Coding Standards
-10. Future Ideas
+By helping hospitality venues attract customers during office hours and making spontaneous social meetups easier, MiddayMate creates value for both businesses and professionals.
 
-## MVP Technology
+---
 
-- Python Flask
-- SQLite
-- HTML
-- CSS
-- JavaScript
-- Azure Container Apps
-- Azure Blob Storage
-- Docker
+# The Problem
 
-## M2 - Find Someone New
-<img width="1518" height="1036" alt="CoffeeFirstDate" src="https://github.com/user-attachments/assets/0d93474e-bef3-4ff0-b502-f7aa580eecc6" />
+Busy professionals often have:
 
+* Limited opportunities to socialise during the workday.
+* Short coffee and lunch breaks.
+* Difficulty discovering nearby venue promotions.
+* No simple way to know who else is available for a spontaneous meetup.
+
+At the same time, cafés and restaurants often have unused capacity during weekday business hours and need effective ways to attract nearby office workers.
+
+MiddayMate connects these two groups through one simple platform.
+
+---
+
+# How It Works
+
+### For Users
+
+* Sign in securely using OAuth.
+* Create a simple professional profile.
+* Discover nearby cafés and restaurants.
+* Browse current promotions and exclusive offers.
+* See who is available nearby.
+* Invite someone to join you for coffee or lunch.
+* Chat after an invitation is accepted.
+* Enjoy the venue promotion together.
+
+### For Vendors
+
+* Register a business profile.
+* Promote cafés, restaurants and events.
+* Publish limited-time campaigns and discounts.
+* Target nearby CBD professionals.
+* Measure campaign performance through analytics.
+* Increase weekday foot traffic.
+
+---
+
+# Core Features
+
+## User Features
+
+* OAuth authentication
+* Professional profile
+* Availability status
+* Nearby venue discovery
+* Promotion browsing
+* Social invitations
+* Match and chat
+* Favourite venues
+* Optional social media links
+
+## Vendor Features
+
+* Business profile management
+* Campaign management
+* Venue image gallery
+* Promotions and discounts
+* Featured listings
+* Campaign analytics
+* Customer engagement dashboard
+
+## Administration
+
+* User moderation
+* Vendor approval
+* Campaign approval
+* Content management
+* Reports and analytics
+
+---
+
+# Technology Stack
+
+## Frontend
+
+* HTML5
+* CSS3
+* Vanilla JavaScript
+
+## Backend
+
+* Python Flask
+* REST API
+* SQLAlchemy ORM
+
+## Database
+
+* SQLite (MVP)
+
+Future migration:
+
+* Azure SQL Database
+
+## Storage
+
+* Azure Blob Storage
+
+Used for:
+
+* User profile photos
+* Vendor images
+* Promotional media
+
+## Hosting
+
+* Azure Container Apps
+* Docker
+
+---
+
+# Authentication
+
+MiddayMate uses OAuth authentication to simplify onboarding and reduce fake accounts.
+
+Supported providers:
+
+* Microsoft
+* Google
+
+Future support:
+
+* Apple
+
+Passwords are not stored by the application.
+
+---
+
+# Privacy First
+
+MiddayMate is designed around minimal data collection.
+
+We only collect information necessary to operate the platform.
+
+We intentionally do **not** store:
+
+* Passwords
+* Payment card information
+* Government-issued identity documents
+* Unnecessary personal information
+
+Profile images are stored in Azure Blob Storage, while the database stores only secure references to those images.
+
+---
+
+# Repository Structure
+
+```text
+MiddayMate/
+
+├── frontend/
+│   ├── css/
+│   ├── js/
+│   ├── images/
+│   └── assets/
+│
+├── backend/
+│   ├── api/
+│   ├── auth/
+│   ├── database/
+│   ├── models/
+│   ├── services/
+│   └── templates/
+│
+├── docs/
+│
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# Documentation
+
+Project documentation is located in the **/docs** directory.
+
+* Project Vision
+* Business Model
+* Product Requirements
+* System Architecture
+* Database Design
+* API Specification
+* UI / UX Guidelines
+* Development Roadmap
+* Coding Standards
+* Future Ideas
+
+---
+
+# MVP Goals
+
+The first release focuses on validating three core outcomes:
+
+* Professionals discover nearby hospitality promotions.
+* Professionals arrange real-world coffee or lunch meetups.
+* Hospitality venues increase weekday customer traffic through targeted campaigns.
+
+---
+
+# Future Roadmap
+
+* Native iOS application
+* Native Android application
+* Push notifications
+* QR code promotion redemption
+* Digital loyalty programs
+* Table reservations
+* Event promotions
+* Vendor CRM tools
+* Multi-city support
+* Azure SQL migration
+* Azure Kubernetes Service (AKS) for large-scale deployment
+
+---
+
+# Guiding Principles
+
+* Keep the MVP simple.
+* Focus on solving real user problems.
+* Build for fast deployment and rapid iteration.
+* Minimise operational costs.
+* Protect user privacy.
+* Create measurable value for hospitality businesses.
+* Technology should support the product—not define it.
+
+---
+
+# Current Status
+
+**Project Phase:** Planning & MVP Development
+
+The current objective is to build, validate, and launch an MVP within a single Docker container hosted on Azure Container Apps before expanding the platform based on real user feedback.
+
+---
+
+**MiddayMate**
+
+**Meet. Eat. Connect.**
