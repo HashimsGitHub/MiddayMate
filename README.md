@@ -6,6 +6,8 @@ MiddayMate is a location-based hospitality engagement platform that connects bus
 
 Unlike traditional social or dating applications, MiddayMate is built around **venues and promotions first**, with people and conversations naturally following.
 
+<img width="1023" height="700" alt="a-business-executive-couple-by-a-large-window-in-the-office-at-sunset-taking-a-break-from-work-ai-generated-photo" src="https://github.com/user-attachments/assets/0e0be072-c999-4e1d-ac5d-efa2fd3a089a" />
+
 ---
 
 # Vision
@@ -256,4 +258,5 @@ The current objective is to build, validate, and launch an MVP within a single D
 
 **MiddayMate**
 
-**Meet. Eat. Connect.**
+**M2 Find Someone New**
+<img width="1518" height="1036" alt="CoffeeFirstDate" src="https://github.com/user-attachments/assets/73e93e99-8c88-45ae-bc0d-33a7a176f899" />
