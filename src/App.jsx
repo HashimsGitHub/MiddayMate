@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import AuthSection from './components/AuthSection'
 import VenuesSection from './components/VenuesSection'
 import ProfileSection from './components/ProfileSection'
 import DemoMode from './components/DemoMode'
@@ -14,65 +13,20 @@ function App() {
   const [venues, setVenues] = useState([])
   const [showDemo, setShowDemo] = useState(false)
 
-  useEffect(() => {
-    initializeApp()
-  }, [])
+  // Demo mode with hardcoded data - no authentication needed
 
-  useEffect(() => {
-    if (currentUser) {
-      fetchVenues()
-    }
-  }, [currentUser])
-
-  const initializeApp = async () => {
-    // Database is auto-seeded on server startup if needed
-    checkAuthStatus()
+  const fetchVenues = () => {
+    // Mock venues already loaded in VenuesSection component
   }
 
-  const checkAuthStatus = async () => {
-    try {
-      const response = await fetch('/api/auth/me')
-      if (response.ok) {
-        const user = await response.json()
-        setCurrentUser(user)
-        setActiveSection('venues')
-      }
-    } catch (error) {
-      console.log('Not authenticated')
-    }
-  }
-
-  const fetchVenues = async () => {
-    try {
-      const response = await fetch('/api/venues')
-      if (response.ok) {
-        const data = Array.isArray(response) ? response : response
-        const venueList = Array.isArray(data) ? data : data.venues || []
-        setVenues(venueList)
-      }
-    } catch (error) {
-      console.error('Failed to fetch venues:', error)
-    }
-  }
-
-  const handleLogout = () => {
-    setCurrentUser(null)
-    setActiveSection('home')
-  }
 
   const handleGetStarted = () => {
-    if (currentUser) {
-      setActiveSection('venues')
-    } else {
-      setActiveSection('auth')
-    }
+    setActiveSection('venues')
   }
 
   return (
     <div className="app">
       <Navbar
-        currentUser={currentUser}
-        onLogout={handleLogout}
         activeSection={activeSection}
         onNavigate={setActiveSection}
       />
@@ -84,18 +38,11 @@ function App() {
         />
       )}
 
-      {activeSection === 'auth' && !currentUser && (
-        <AuthSection onAuthSuccess={(user) => {
-          setCurrentUser(user)
-          setActiveSection('venues')
-        }} />
-      )}
-
-      {activeSection === 'venues' && currentUser && (
+      {activeSection === 'venues' && (
         <VenuesSection venues={venues} onRefresh={fetchVenues} />
       )}
 
-      {activeSection === 'profile' && currentUser && (
+      {activeSection === 'profile' && (
         <ProfileSection
           user={currentUser}
           onUpdate={(updatedUser) => setCurrentUser(updatedUser)}

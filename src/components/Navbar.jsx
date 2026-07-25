@@ -1,6 +1,6 @@
 import './Navbar.css'
 
-export default function Navbar({ currentUser, onLogout, activeSection, onNavigate }) {
+export default function Navbar({ activeSection, onNavigate }) {
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -10,17 +10,8 @@ export default function Navbar({ currentUser, onLogout, activeSection, onNavigat
         </div>
         <div className="navbar-menu">
           <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('home'); }} className="nav-link">Home</a>
-          {currentUser && (
-            <>
-              <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('venues'); }} className="nav-link">Venues</a>
-              <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('profile'); }} className="nav-link">Profile</a>
-            </>
-          )}
-          {currentUser ? (
-            <button className="btn btn-secondary" onClick={onLogout}>Sign Out</button>
-          ) : (
-            <button className="btn btn-primary" onClick={() => onNavigate('auth')}>Sign In</button>
-          )}
+          <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('venues'); }} className="nav-link">Venues</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('profile'); }} className="nav-link">Profile</a>
         </div>
       </div>
     </nav>
