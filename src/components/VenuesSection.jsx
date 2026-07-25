@@ -1,33 +1,16 @@
 import { useState, useEffect } from 'react'
+import { mockVenues } from '../mockData'
 import './VenuesSection.css'
 
 export default function VenuesSection({ venues: initialVenues, onRefresh }) {
-  const [venues, setVenues] = useState([])
+  const [venues, setVenues] = useState(mockVenues)
   const [searchTerm, setSearchTerm] = useState('')
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    // Fetch venues from API
-    fetchVenues()
+    // Use mock data for demo
+    setVenues(mockVenues)
   }, [])
-
-  const fetchVenues = async () => {
-    setLoading(true)
-    try {
-      const response = await fetch('/api/venues')
-      if (response.ok) {
-        const data = await response.json()
-        // Handle both array and object responses
-        const venueList = Array.isArray(data) ? data : (data.venues || [])
-        setVenues(venueList)
-      }
-    } catch (error) {
-      console.error('Failed to fetch venues:', error)
-      setVenues([])
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const filteredVenues = venues.filter(v =>
     v.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -69,7 +52,10 @@ export default function VenuesSection({ venues: initialVenues, onRefresh }) {
         {!searchTerm && (
           <button
             className="search-toggle"
-            onClick={() => setSearchTerm('')}
+            onClick={() => {
+              setSearchTerm('')
+              setVenues(mockVenues)
+            }}
           >
             🔍 Search Venues
           </button>
