@@ -1,43 +1,68 @@
 # Project Vision
 
-## Mission
+## Project Name
 
-Enable busy professionals to meet meaningful people during the workday over coffee or lunch.
-
-The application removes the friction of traditional dating by leveraging time professionals already have available.
+**MiddayMate (M²)**
 
 ## Tagline
 
-Dating for Professionals, Over Coffee.
+**Find Someone New.**
 
-## Brand
+---
 
-MiddayMate
+# Vision
 
-Short Brand
+MiddayMate is a location-based hospitality engagement platform that connects CBD professionals with local cafés, restaurants, and nearby people during coffee and lunch breaks.
 
-M²
+The platform enables hospitality businesses to promote offers and campaigns while helping professionals make better use of their workday by discovering new places and meeting new people.
 
-## The Problem
+---
 
-Busy professionals:
+# Mission
 
-- work long hours
-- rarely socialise after work
-- are tired of endless swiping
-- often eat lunch alone
+To become the preferred platform for discovering people, places and promotions during the workday.
 
-Hospitality businesses:
+---
 
-- have spare weekday capacity
-- struggle to attract office workers during quieter periods
+# The Problem
 
-MiddayMate connects these two groups.
+Busy professionals often:
 
-## Vision
+- Have limited opportunities to socialise
+- Eat lunch alone
+- Miss nearby promotions
+- Don't know who else is available nearby
 
-Become the preferred dating platform for professionals.
+Hospitality businesses often:
 
-Technology should support the product—not define it.
+- Have spare weekday capacity
+- Need targeted local advertising
+- Want measurable campaign performance
 
-AI is intentionally excluded from the MVP.
+MiddayMate solves both problems.
+
+---
+
+# Core Principles
+
+- Venue first
+- People second
+- Privacy first
+- Fast onboarding
+- Real-world interactions
+- Vendor funded
+- No subscriptions for users
+
+---
+
+# Product Philosophy
+
+Technology supports the experience.
+
+The focus is connecting people with places—not endless scrolling.
+
+---
+
+# Brand Promise
+
+**Find Someone New.**

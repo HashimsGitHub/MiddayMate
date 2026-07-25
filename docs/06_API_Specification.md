@@ -1,12 +1,14 @@
 # API Specification
 
-Authentication
+## Authentication
 
 POST /api/auth/login
 
 POST /api/auth/logout
 
-Users
+---
+
+## Users
 
 GET /api/users/me
 
@@ -14,26 +16,58 @@ PUT /api/users/me
 
 GET /api/users/nearby
 
-Matching
+GET /api/users/available
 
-POST /api/like
+---
 
-POST /api/pass
+## Promotions
 
-GET /api/matches
+GET /api/promotions
 
-Chat
+GET /api/promotions/nearby
 
-GET /api/chat/{matchId}
+GET /api/promotions/{id}
 
-POST /api/chat/send
+---
 
-Vendors
+## Vendors
 
 GET /api/vendors
 
-GET /api/campaigns
+GET /api/vendors/{id}
 
-Administrator
+GET /api/vendors/promotions
 
-CRUD endpoints
+---
+
+## Invitations
+
+POST /api/invitations
+
+PUT /api/invitations/accept
+
+PUT /api/invitations/reject
+
+---
+
+## Chat
+
+GET /api/chat/{id}
+
+POST /api/chat/send
+
+---
+
+## Administration
+
+CRUD
+
+Users
+
+Vendors
+
+Campaigns
+
+Promotions
+
+Reports

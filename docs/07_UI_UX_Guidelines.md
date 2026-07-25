@@ -1,23 +1,89 @@
 # UI / UX Guidelines
 
-Modern
-
-Minimal
+## Design Goals
 
 Professional
 
+Minimal
+
+Modern
+
 Fast
 
-Responsive
+Friendly
 
-No unnecessary screens.
+---
 
-User onboarding must take less than 30 seconds.
+## Home Screen
 
-No passwords.
+Primary content:
 
-No complex profile creation.
+Nearby Promotions
 
-Primary colour palette should reflect trust and professionalism.
+Secondary content:
 
-Focus on real-world meetings rather than endless messaging.
+Available People
+
+---
+
+## Navigation
+
+Home
+
+Promotions
+
+Nearby
+
+Messages
+
+Profile
+
+---
+
+## User Journey
+
+Promotion
+
+↓
+
+Venue
+
+↓
+
+People Available
+
+↓
+
+Invite
+
+↓
+
+Meet
+
+---
+
+## Vendor Dashboard
+
+Campaigns
+
+Promotions
+
+Analytics
+
+Business Profile
+
+---
+
+## Design Principles
+
+Less typing.
+
+Large buttons.
+
+Simple navigation.
+
+One-handed operation.
+
+Minimal onboarding.
+
+Professional appearance.

@@ -1,47 +1,75 @@
 # Business Model
 
-Users never pay during the MVP.
+## Platform Type
 
-Revenue comes from Vendors.
+Two-sided marketplace.
+
+The platform connects:
+
+- Professionals
+- Hospitality Vendors
+
+---
+
+# Customers
+
+## Users
+
+Free to use.
+
+Discover:
+
+- Cafés
+- Restaurants
+- Promotions
+- Nearby people
+
+---
 
 ## Vendors
 
-- Coffee Shops
-- Cafés
-- Restaurants
-- Dessert Bars
-- Wine Bars
+Pay to advertise.
 
-## Revenue Streams
+Promote:
 
-### Featured Listings
+- Coffee
+- Lunch
+- Events
+- Discounts
+- Campaigns
 
-Businesses pay to appear higher in search results.
+---
 
-### Dating Discounts
+# Revenue Streams
 
-Examples:
+## Sponsored Listings
 
-- Free Dessert
-- Buy One Coffee Get One Free
-- 15% Lunch Discount
+Featured placement.
 
-### Sponsored Campaigns
+## Promotional Campaigns
 
-Businesses create marketing campaigns targeting professionals.
+Limited-time offers.
 
-### Future
+## Premium Vendor Accounts
 
-Analytics Dashboard
+Enhanced visibility.
 
-Premium Campaign Placement
+## Seasonal Campaigns
 
-Seasonal Promotions
+Holiday promotions.
 
-Corporate Packages
+## Future
 
-## Why this Model?
+- Analytics
+- Customer Insights
+- Loyalty Programs
 
-Dating apps compete heavily on subscriptions.
+---
 
-MiddayMate instead monetises business traffic generated for hospitality venues.
+# Value Proposition
+
+Users discover people.
+
+Vendors gain customers.
+
+MiddayMate connects both.

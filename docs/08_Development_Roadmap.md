@@ -1,6 +1,6 @@
 # Development Roadmap
 
-Phase 1
+## Phase 1
 
 Planning
 
@@ -12,42 +12,62 @@ Docker
 
 SQLite
 
-Phase 2
+---
 
-Authentication
+## Phase 2
 
-User Profiles
+OAuth
 
-Matching
-
-Chat
+Profiles
 
 Vendor Portal
 
-Phase 3
+Promotions
+
+Nearby Users
+
+Invitations
+
+---
+
+## Phase 3
+
+Messaging
+
+Campaign Management
+
+Notifications
 
 Azure Deployment
 
-Blob Storage
+---
 
-Production Testing
-
-Phase 4
+## Phase 4
 
 Pilot Launch
 
-CBD Only
+Single CBD
 
 Collect Feedback
 
-Phase 5
+---
 
-Investment
-
-Scale Database
+## Phase 5
 
 Azure SQL
 
-Eventually
+Analytics
+
+Additional Cities
+
+---
+
+## Future
 
 AKS
+
+Native Mobile Apps
+
+QR Promotions
+
+Loyalty Programs

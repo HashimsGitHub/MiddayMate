@@ -12,47 +12,57 @@ Azure Container Apps
 
 ↓
 
-Flask
+Python Flask
 
 ↓
 
-SQLite
+SQLite Database
 
 ↓
 
 Azure Blob Storage
 
-## Hosting
+---
 
-Single Docker Container
+## Components
 
-Contains
+Frontend
 
-- Frontend
-- Backend
-- Authentication
-- REST API
+- HTML
+- CSS
+- JavaScript
 
-## Storage
+Backend
 
-Azure Blob Storage
+- Flask REST API
 
-Stores:
+Database
 
-- Profile Photos
+- SQLite
 
-SQLite stores URLs only.
+Storage
+
+- Azure Blob Storage
+
+Authentication
+
+- Microsoft OAuth
+- Google OAuth
+
+---
+
+## Deployment
+
+Single Docker Container.
+
+Frontend and Backend deployed together.
+
+---
 
 ## Future
 
-SQLite
-
-↓
-
-Azure SQL
+Azure SQL Database
 
 ↓
 
 Azure Kubernetes Service (AKS)
-
-No Kubernetes required for MVP.

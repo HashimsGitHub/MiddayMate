@@ -1,35 +1,65 @@
 # Future Ideas
 
+## Hospitality
+
+QR Code Redemption
+
+Digital Loyalty Cards
+
+Table Reservations
+
+Restaurant Reviews
+
+Venue Ratings
+
+Vendor CRM
+
+Campaign Analytics
+
+---
+
+## Users
+
+Friends Mode
+
+Dating Mode
+
+Networking Mode
+
+Group Meetups
+
+Event Discovery
+
+Recurring Meetups
+
+---
+
+## Vendors
+
+Seasonal Campaigns
+
+Sponsored Events
+
+Live Music
+
+Singles Nights
+
+Happy Hours
+
+Corporate Packages
+
+---
+
+## Platform
+
 Native Mobile Apps
-
-Push Notifications
-
-Identity Verification
-
-Photo Verification
-
-Premium Membership
-
-Restaurant Reservations
-
-Happy Hour Promotions
-
-Singles Events
-
-Speed Dating
-
-Corporate Partnerships
-
-Venue Analytics
-
-Multi-city Expansion
-
-International Expansion
-
-Potential migration:
 
 Azure SQL
 
-Azure Kubernetes Service
+AKS
 
-AI features only if they solve a real user problem after MVP validation.
+Multi-City Support
+
+International Expansion
+
+AI-powered venue recommendations (only if they improve user experience after MVP validation)

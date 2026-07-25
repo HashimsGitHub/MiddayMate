@@ -1,86 +1,395 @@
-# Product Requirements
+# MiddayMate (M²)
 
-## User Types
+## Product Requirements Document (PRD)
 
-### User
+Version 2.0 – MVP
 
-- OAuth Login
-- Edit Profile
-- Upload Selfie
-- Browse Matches
-- Like
-- Pass
-- Match
-- Chat
-- Select Venue
+---
 
-### Vendor
+# Executive Summary
 
-- Register Business
-- Upload Venue Photos
-- Publish Campaigns
-- Create Dating Discounts
-- View Campaign Analytics
+MiddayMate is a location-based hospitality promotion platform that connects busy CBD professionals with local cafés and restaurants while enabling users to discover nearby people who are available to join them for coffee or lunch.
 
-### Administrator
+Unlike traditional dating applications, MiddayMate is centred around venues and promotions rather than people.
 
-- Moderate Users
-- Approve Vendors
-- Approve Campaigns
-- Remove Fake Accounts
-- Analytics
+The platform benefits three stakeholders:
 
-## Authentication
+• Users
+• Vendors
+• MiddayMate
 
-OAuth Only
+---
 
-No usernames.
+# Product Vision
 
-No passwords.
+Help professionals make better use of their workday breaks by discovering great venues, exclusive promotions and people nearby.
 
-Supported:
+Tagline
 
-- Microsoft
-- Google
+Meet. Eat. Connect.
 
-Future:
+---
 
-- Apple
+# Problem Statement
 
-Purpose:
+CBD professionals often have:
 
-Reduce fake accounts.
+- Short coffee breaks
+- Limited lunch breaks
+- Difficulty organising spontaneous meetups
 
-Simplify onboarding.
+Meanwhile cafés and restaurants:
 
-## Profile
+- Have spare weekday capacity
+- Need targeted advertising
+- Want repeat customers
+- Need measurable marketing ROI
 
-First Name
+MiddayMate solves both problems simultaneously.
 
-Job Title
+---
 
-Company (optional)
+# Primary Objectives
 
-Office Location
+Increase weekday foot traffic to hospitality venues.
 
-Bio
+Enable spontaneous social meetups.
 
-Selfie
+Provide measurable value to Vendors.
 
-Instagram (optional)
+---
 
-LinkedIn (optional)
+# Stakeholders
 
-## Matching
+## Users
 
-Swipe Right
+Discover
 
-Swipe Left
+- Promotions
+- Venues
+- Coffee
+- Lunch
+- Nearby People
 
-Mutual Match
+---
 
-Chat
+## Vendors
+
+Promote
+
+- Cafés
+- Restaurants
+- Campaigns
+- Discounts
+- Events
+
+---
+
+## Administrator
+
+Manage
+
+- Users
+- Vendors
+- Campaigns
+- Reports
+- Categories
+
+---
+
+# Core User Story
+
+"I have a 9:00 AM coffee break.
+
+Show me nearby coffee promotions and people who are available."
+
+---
+
+# User Journey
+
+Open App
+
+↓
+
+Nearby Promotions
+
+↓
+
+Select Promotion
+
+↓
+
+See Nearby Available People
+
+↓
+
+Invite Someone
+
+↓
+
+Accept
+
+↓
 
 Meet
 
-Venue Selection
+---
+
+# Vendor Journey
+
+Login
+
+↓
+
+Create Campaign
+
+↓
+
+Select Promotion
+
+↓
+
+Choose Duration
+
+↓
+
+Publish
+
+↓
+
+Receive Customers
+
+↓
+
+Review Analytics
+
+---
+
+# Revenue Model
+
+Vendor funded.
+
+No user subscription required.
+
+Revenue
+
+- Featured Listings
+- Sponsored Campaigns
+- Premium Placement
+- Promotional Packages
+
+---
+
+# Authentication
+
+OAuth only.
+
+Microsoft
+
+Google
+
+Future
+
+Apple
+
+Purpose
+
+Reduce fake accounts.
+
+Simple onboarding.
+
+---
+
+# User Profile
+
+First Name
+
+Photo
+
+Job Title
+
+Company (Optional)
+
+Office Area
+
+Bio
+
+Availability
+
+Optional Social Media Links
+
+---
+
+# Vendor Profile
+
+Business Name
+
+Category
+
+Logo
+
+Venue Images
+
+Opening Hours
+
+Address
+
+Contact Details
+
+Campaigns
+
+Discounts
+
+---
+
+# Campaign Types
+
+Coffee Promotion
+
+Lunch Promotion
+
+Happy Hour
+
+Dessert Promotion
+
+Limited Time Offer
+
+Event
+
+Weekend Promotion
+
+---
+
+# Matching
+
+Venue first.
+
+People second.
+
+Algorithm
+
+Nearby Promotion
+
+↓
+
+Nearby Available People
+
+↓
+
+Invitation
+
+↓
+
+Acceptance
+
+↓
+
+Chat
+
+↓
+
+Meet
+
+---
+
+# Chat
+
+Simple messaging.
+
+No AI.
+
+No Voice.
+
+No Video.
+
+---
+
+# Notifications
+
+Campaign Started
+
+Invitation Received
+
+Invitation Accepted
+
+Campaign Ending
+
+---
+
+# Privacy
+
+Collect minimal PII.
+
+Store
+
+OAuth ID
+
+Name
+
+Photo
+
+Job Title
+
+Office Area
+
+Do not store
+
+Passwords
+
+Payment Cards
+
+Government IDs
+
+---
+
+# Technology Stack
+
+Frontend
+
+HTML
+
+CSS
+
+JavaScript
+
+Backend
+
+Flask
+
+SQLite
+
+Azure Blob Storage
+
+Docker
+
+Azure Container Apps
+
+Future
+
+Azure SQL
+
+AKS
+
+---
+
+# Success Metrics
+
+Vendor campaign clicks
+
+Campaign redemptions
+
+Venue visits
+
+Successful meetups
+
+Daily active users
+
+Repeat users
+
+Repeat vendors
+
+---
+
+# MVP Goal
+
+Become the preferred lunchtime discovery platform for CBD professionals.

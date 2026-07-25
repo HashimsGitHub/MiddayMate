@@ -1,4 +1,6 @@
-# Database Tables
+# Database Design
+
+## Core Tables
 
 Users
 
@@ -6,30 +8,70 @@ Vendors
 
 VendorCampaigns
 
+Promotions
+
+PromotionImages
+
 Matches
 
-Likes
+Invitations
 
 Chats
 
 Messages
 
+VenueCategories
+
 MeetingLocations
+
+AvailabilityStatus
+
+Notifications
 
 Reports
 
 AdminUsers
 
-## Design Goals
+---
 
-Minimal Personally Identifiable Information.
+# User Profile
 
-Never store:
+- OAuth Provider
+- OAuth User ID
+- First Name
+- Job Title
+- Company
+- Office Area
+- Bio
+- Profile Photo URL
 
-Passwords
+---
 
-Payment Cards
+# Vendor Profile
 
-Government IDs
+- Business Name
+- Address
+- Category
+- Opening Hours
+- Contact Details
+- Logo URL
 
-Only OAuth identifiers required.
+---
+
+# Promotion
+
+- Title
+- Description
+- Start Date
+- End Date
+- Discount
+- Vendor
+- Category
+
+---
+
+# Privacy
+
+Store only minimal personally identifiable information.
+
+Passwords are never stored.

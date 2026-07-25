@@ -39,3 +39,13 @@ No React.
 No Angular.
 
 No Vue.
+
+## Architecture
+
+The application follows a modular Flask architecture.
+
+Business logic must remain independent of the presentation layer.
+
+Repository pattern should be used for database access.
+
+REST APIs must remain backward compatible where practical.
