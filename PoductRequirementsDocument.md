@@ -2,200 +2,285 @@
 
 ## Product Requirements Document (PRD)
 
-Version: 1.0 MVP
+Version 2.0 – MVP
 
 ---
 
-# Project Overview
+# Executive Summary
 
-MiddayMate is a location-based dating platform designed specifically for professionals working in Central Business Districts (CBDs).
+MiddayMate is a location-based hospitality promotion platform that connects busy CBD professionals with local cafés and restaurants while enabling users to discover nearby people who are available to join them for coffee or lunch.
 
-The application enables busy professionals to meet over coffee or lunch during office hours.
+Unlike traditional dating applications, MiddayMate is centred around venues and promotions rather than people.
 
-Unlike traditional dating applications, MiddayMate focuses on real-world meetings that occur during existing coffee and lunch breaks.
+The platform benefits three stakeholders:
 
-The platform also serves cafés and restaurants by promoting their venues and campaigns to users looking for meeting locations.
+• Users
+• Vendors
+• MiddayMate
 
 ---
 
 # Product Vision
 
-"Dating for Professionals, Over Coffee."
+Help professionals make better use of their workday breaks by discovering great venues, exclusive promotions and people nearby.
 
-MiddayMate creates meaningful real-world introductions while helping hospitality venues increase weekday business.
+Tagline
+
+Meet. Eat. Connect.
 
 ---
 
 # Problem Statement
 
-Professionals often struggle to meet compatible people because of:
+CBD professionals often have:
 
-- Long work hours
-- Career-focused lifestyles
-- Limited evening availability
-- Traditional dating apps encourage endless chatting rather than meeting
+- Short coffee breaks
+- Limited lunch breaks
+- Difficulty organising spontaneous meetups
 
-At the same time, cafés and restaurants have spare seating capacity during weekdays.
+Meanwhile cafés and restaurants:
 
-MiddayMate connects these two markets.
+- Have spare weekday capacity
+- Need targeted advertising
+- Want repeat customers
+- Need measurable marketing ROI
 
----
-
-# Target Audience
-
-Professionals aged 21+
-
-Examples:
-
-- Lawyers
-- Doctors
-- Engineers
-- Executives
-- Consultants
-- Accountants
-- Corporate Employees
-- Entrepreneurs
+MiddayMate solves both problems simultaneously.
 
 ---
 
-# Business Model
+# Primary Objectives
 
-Users join free.
+Increase weekday foot traffic to hospitality venues.
 
-Revenue comes from Vendors.
+Enable spontaneous social meetups.
 
-Vendors include:
+Provide measurable value to Vendors.
+
+---
+
+# Stakeholders
+
+## Users
+
+Discover
+
+- Promotions
+- Venues
+- Coffee
+- Lunch
+- Nearby People
+
+---
+
+## Vendors
+
+Promote
 
 - Cafés
 - Restaurants
-- Wine Bars
-- Dessert Cafés
+- Campaigns
+- Discounts
+- Events
 
-Revenue sources:
+---
+
+## Administrator
+
+Manage
+
+- Users
+- Vendors
+- Campaigns
+- Reports
+- Categories
+
+---
+
+# Core User Story
+
+"I have a 9:00 AM coffee break.
+
+Show me nearby coffee promotions and people who are available."
+
+---
+
+# User Journey
+
+Open App
+
+↓
+
+Nearby Promotions
+
+↓
+
+Select Promotion
+
+↓
+
+See Nearby Available People
+
+↓
+
+Invite Someone
+
+↓
+
+Accept
+
+↓
+
+Meet
+
+---
+
+# Vendor Journey
+
+Login
+
+↓
+
+Create Campaign
+
+↓
+
+Select Promotion
+
+↓
+
+Choose Duration
+
+↓
+
+Publish
+
+↓
+
+Receive Customers
+
+↓
+
+Review Analytics
+
+---
+
+# Revenue Model
+
+Vendor funded.
+
+No user subscription required.
+
+Revenue
 
 - Featured Listings
 - Sponsored Campaigns
-- Dating Discounts
-- Premium Venue Placement
-
-Users are never required to purchase subscriptions for the MVP.
-
----
-
-# User Types
-
-## 1. User
-
-Can:
-
-- Register
-- Login
-- Edit profile
-- Upload selfies
-- Browse nearby matches
-- Like
-- Pass
-- Match
-- Chat
-- Select meeting venue
-- Redeem vendor promotions
-
----
-
-## 2. Vendor
-
-Can:
-
-- Register business
-- Login
-- Create campaigns
-- Upload venue images
-- Publish dating discounts
-- View campaign analytics
-- Manage venue information
-- Sponsor listings
-
----
-
-## 3. Administrator
-
-Can:
-
-- Manage users
-- Moderate reports
-- Approve vendors
-- Manage campaigns
-- Manage featured listings
-- Manage categories
-- View analytics
+- Premium Placement
+- Promotional Packages
 
 ---
 
 # Authentication
 
-No usernames.
+OAuth only.
 
-No passwords.
+Microsoft
 
-Supported providers:
+Google
 
-- Microsoft
-- Google
-- Apple (future)
+Future
 
-OAuth is used primarily to reduce fake accounts and simplify onboarding.
+Apple
 
-Store only:
+Purpose
 
-OAuth Provider
+Reduce fake accounts.
 
-OAuth User ID
-
-Email
-
-First Name
-
-Nothing more than necessary.
+Simple onboarding.
 
 ---
 
 # User Profile
 
-Fields
-
 First Name
 
-Profile Photo
+Photo
 
 Job Title
 
-Company (optional)
+Company (Optional)
 
-Office Location
+Office Area
 
-Short Bio
+Bio
 
-Coffee Preference
+Availability
 
-Lunch Preference
+Optional Social Media Links
 
-Instagram URL (optional)
+---
 
-LinkedIn URL (optional)
+# Vendor Profile
+
+Business Name
+
+Category
+
+Logo
+
+Venue Images
+
+Opening Hours
+
+Address
+
+Contact Details
+
+Campaigns
+
+Discounts
+
+---
+
+# Campaign Types
+
+Coffee Promotion
+
+Lunch Promotion
+
+Happy Hour
+
+Dessert Promotion
+
+Limited Time Offer
+
+Event
+
+Weekend Promotion
 
 ---
 
 # Matching
 
-Swipe Right
+Venue first.
 
-Swipe Left
+People second.
 
-Mutual Like
+Algorithm
+
+Nearby Promotion
 
 ↓
 
-Match
+Nearby Available People
+
+↓
+
+Invitation
+
+↓
+
+Acceptance
 
 ↓
 
@@ -203,7 +288,7 @@ Chat
 
 ↓
 
-Arrange Coffee or Lunch
+Meet
 
 ---
 
@@ -211,376 +296,100 @@ Arrange Coffee or Lunch
 
 Simple messaging.
 
-No voice.
-
 No AI.
 
-No video.
+No Voice.
+
+No Video.
 
 ---
 
-# Vendor Features
+# Notifications
 
-Business Profile
+Campaign Started
 
-Venue Photos
+Invitation Received
 
-Trading Hours
+Invitation Accepted
 
-Campaigns
-
-Discounts
-
-Coupons
-
-Featured Listings
-
-Dashboard
-
-Campaign Statistics
-
----
-
-# Meeting Locations
-
-Users can select venues from nearby participating vendors.
-
-Example
-
-Coffee
-
-- Cafe A
-
-- Cafe B
-
-- Cafe C
-
-Lunch
-
-- Restaurant A
-
-- Restaurant B
-
-Venue promotions displayed alongside listings.
+Campaign Ending
 
 ---
 
 # Privacy
 
-Store minimal PII.
+Collect minimal PII.
 
-Never store passwords.
+Store
 
-Never store payment cards.
+OAuth ID
 
-Never store government identity documents.
+Name
 
-Profile photos stored in Azure Blob Storage.
+Photo
 
-Database stores only image URLs.
+Job Title
+
+Office Area
+
+Do not store
+
+Passwords
+
+Payment Cards
+
+Government IDs
 
 ---
 
-# MVP Technology Stack
+# Technology Stack
 
 Frontend
-
-HTML5
-
-CSS3
-
-JavaScript
-
-Folder
-
-/frontend
-
----
-
-Backend
-
-Python Flask
-
-REST API
-
----
-
-Database
-
-SQLite
-
-Future
-
-Azure SQL Database
-
----
-
-Storage
-
-Azure Blob Storage
-
----
-
-Hosting
-
-Azure Container Apps
-
-Single Docker Container
-
-Contains
-
-Frontend
-
-Backend
-
-Authentication
-
-REST API
-
----
-
-Domain
-
-middaymate.com
-
-DNS hosted by GoDaddy
-
-DNS points directly to Azure Container Apps
-
-Azure Managed HTTPS Certificate
-
-No URL masking
-
----
-
-Repository Structure
-
-MiddayMate/
-
-    frontend/
-
-        css/
-
-        js/
-
-        images/
-
-    backend/
-
-        api/
-
-        auth/
-
-        database/
-
-        models/
-
-        services/
-
-    uploads/
-
-    Dockerfile
-
-    requirements.txt
-
-    app.py
-
----
-
-Database Tables
-
-Users
-
-Vendors
-
-VendorCampaigns
-
-Matches
-
-Likes
-
-Chats
-
-Messages
-
-VenueCategories
-
-MeetingLocations
-
-Reports
-
-AdminUsers
-
----
-
-API Endpoints
-
-Authentication
-
-POST /api/auth/login
-
-POST /api/auth/logout
-
-User
-
-GET /api/users/me
-
-PUT /api/users/me
-
-GET /api/users/nearby
-
-Matching
-
-POST /api/like
-
-POST /api/pass
-
-GET /api/matches
-
-Chat
-
-GET /api/chat/{matchId}
-
-POST /api/chat/send
-
-Vendor
-
-GET /api/vendors
-
-GET /api/vendors/{id}
-
-GET /api/campaigns
-
-Admin
-
-CRUD endpoints
-
----
-
-Future Roadmap
-
-Push Notifications
-
-Photo Verification
-
-Identity Verification
-
-Premium Membership
-
-Native Mobile Apps
-
-Azure SQL
-
-AKS
-
-AI Matching (optional)
-
----
-
-Non Functional Requirements
-
-Responsive Design
-
-Docker Deployment
-
-Single Container
-
-Simple Architecture
-
-Fast Load Time
-
-Minimal Dependencies
-
-RESTful API
-
-Secure Authentication
-
----
-
-Out of Scope
-
-Subscriptions
-
-Voice Calls
-
-Video Calls
-
-AI Chat
-
-AI Speech
-
-Complex Recommendation Engine
-
-Microservices
-
-Kubernetes
-
----
-
-Definition of MVP Success
-
-Users successfully:
-
-Register
-
-Create profile
-
-Upload photo
-
-Match
-
-Chat
-
-Meet over coffee or lunch
-
-Vendor successfully:
-
-Creates campaign
-
-Promotion appears inside application
-
-Users choose promoted venue
-
----
-
-Instructions for OpenAI Codex
-
-Build this project using:
-
-Python Flask
-
-SQLite
 
 HTML
 
 CSS
 
-Vanilla JavaScript
+JavaScript
+
+Backend
+
+Flask
+
+SQLite
+
+Azure Blob Storage
 
 Docker
 
-Azure Container Apps compatible deployment
+Azure Container Apps
 
-Implement REST APIs.
+Future
 
-Keep frontend and backend separated.
+Azure SQL
 
-Use clean modular architecture.
+AKS
 
-Follow MVC principles.
+---
 
-Generate Dockerfile and docker-compose.yml.
+# Success Metrics
 
-Use SQLAlchemy ORM.
+Vendor campaign clicks
 
-Use Flask Blueprint architecture.
+Campaign redemptions
 
-Include database migrations.
+Venue visits
 
-Create sample data for testing.
+Successful meetups
 
-Produce production-ready code with comments.
+Daily active users
 
-Do not introduce React, Angular, Vue or other frontend frameworks.
+Repeat users
 
-Keep the MVP lightweight and easily deployable.
+Repeat vendors
+
+---
+
+# MVP Goal
+
+Become the preferred lunchtime discovery platform for CBD professionals.
