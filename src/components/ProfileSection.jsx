@@ -18,25 +18,14 @@ export default function ProfileSection({ user, onUpdate }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    try {
-      const response = await fetch('/api/users/profile', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      })
-
-      if (response.ok) {
-        const updatedUser = await response.json()
-        onUpdate(updatedUser)
-        setMessage('Profile updated successfully!')
-        setTimeout(() => setMessage(null), 3000)
-      }
-    } catch (error) {
-      setMessage('Failed to update profile')
-      console.error(error)
-    } finally {
+    // Mock update - no API call in mockup mode
+    setTimeout(() => {
+      const updatedUser = { ...user, ...formData }
+      onUpdate(updatedUser)
+      setMessage('Profile updated successfully!')
       setLoading(false)
-    }
+      setTimeout(() => setMessage(null), 3000)
+    }, 500)
   }
 
   return (

@@ -87,3 +87,12 @@ export const mockUsers = [
   { id: 5, name: 'Lisa Wang', email: 'lisa.wang@financeplus.com', availability_status: 'away' },
   { id: 6, name: 'David Kumar', email: 'david.kumar@consulting.com', availability_status: 'available' },
 ];
+
+// Default logged-in user for mockup
+export const mockCurrentUser = {
+  id: 1,
+  name: 'Sarah Johnson',
+  email: 'sarah.johnson@dxc.com',
+  bio: 'Digital professional passionate about networking and exploring new venues',
+  availability_status: 'available'
+};

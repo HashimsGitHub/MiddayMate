@@ -5,10 +5,11 @@ import VenuesSection from './components/VenuesSection'
 import ProfileSection from './components/ProfileSection'
 import DemoMode from './components/DemoMode'
 import Footer from './components/Footer'
+import { mockCurrentUser } from './mockData'
 import './App.css'
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null)
+  const [currentUser, setCurrentUser] = useState(mockCurrentUser)
   const [activeSection, setActiveSection] = useState('home')
   const [venues, setVenues] = useState([])
   const [showDemo, setShowDemo] = useState(false)
