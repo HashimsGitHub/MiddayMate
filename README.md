@@ -35,6 +35,6 @@ See the `/docs` folder.
 - Azure Blob Storage
 - Docker
 
-## Product Status
+## M2 - Find Someone New
+<img width="1518" height="1036" alt="CoffeeFirstDate" src="https://github.com/user-attachments/assets/0d93474e-bef3-4ff0-b502-f7aa580eecc6" />
 
-Planning Phase
