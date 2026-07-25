@@ -7,6 +7,7 @@ MiddayMate is a location-based dating platform designed specifically for busy pr
 Unlike traditional dating applications, MiddayMate encourages real-world meetings during office hours over coffee or lunch.
 
 The platform also enables cafés and restaurants to promote their venues, campaigns and exclusive "Dating Discounts" to attract new customers.
+<img width="1023" height="700" alt="a-business-executive-couple-by-a-large-window-in-the-office-at-sunset-taking-a-break-from-work-ai-generated-photo" src="https://github.com/user-attachments/assets/f1afecb9-a8dc-4aa2-a377-e15dce1e4feb" />
 
 ## Documentation
 
