@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import os
@@ -9,10 +9,9 @@ def create_app(config_name='development'):
     """Application factory pattern."""
     # Get the root path for static files
     root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    static_folder = os.path.join(root_path, 'frontend')
-    template_folder = os.path.join(root_path, 'frontend')
+    frontend_path = os.path.join(root_path, 'frontend')
 
-    app = Flask(__name__, static_folder=static_folder, static_url_path='', template_folder=template_folder)
+    app = Flask(__name__, template_folder=frontend_path)
 
     # Load configuration
     if config_name == 'production':
@@ -53,14 +52,12 @@ def create_app(config_name='development'):
     # Serve CSS files
     @app.route('/css/<path:filename>')
     def serve_css(filename):
-        from flask import send_from_directory
-        return send_from_directory(os.path.join(static_folder, 'css'), filename)
+        return send_from_directory(os.path.join(frontend_path, 'css'), filename)
 
     # Serve JS files
     @app.route('/js/<path:filename>')
     def serve_js(filename):
-        from flask import send_from_directory
-        return send_from_directory(os.path.join(static_folder, 'js'), filename)
+        return send_from_directory(os.path.join(frontend_path, 'js'), filename)
 
     # Create tables
     with app.app_context():
