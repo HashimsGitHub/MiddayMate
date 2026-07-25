@@ -193,7 +193,27 @@ MiddayMate/
 
 ---
 
+# Current Status
+
+**🎨 Project Phase:** Mockup/Prototype Phase
+
+This is a **functional mockup** with fully hardcoded frontend data. All core features are working with mock data for demonstration and testing of the UI/UX.
+
+**See [MOCKUP_README.md](MOCKUP_README.md) for current mockup details.**
+
+The next phase will add:
+- Real OAuth authentication
+- Production database
+- Actual user profiles and messaging
+- Vendor/business features
+
+---
+
 # Quick Start
+
+## Live Mockup
+
+Visit the live mockup: https://middaymate.calmsand-7d615011.australiaeast.azurecontainerapps.io/
 
 ## Local Development
 
@@ -205,21 +225,19 @@ python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 
 # 2. Install dependencies
+npm install
 pip install -r requirements.txt
 
-# 3. Setup environment
-cp .env.example .env
+# 3. Build frontend
+npm run build
 
-# 4. Seed database
-python scripts/seed_database.py
-
-# 5. Run application
+# 4. Run application
 python run.py
 ```
 
 Open `http://localhost:5000` in your browser.
 
-See [DEVELOPMENT.md](DEVELOPMENT.md) for detailed instructions.
+See [DEVELOPMENT.md](docs/guides/DEVELOPMENT.md) for detailed instructions.
 
 ## Azure Deployment
 
@@ -292,15 +310,6 @@ The first release focuses on validating three core outcomes:
 
 ---
 
-# Current Status
+**MiddayMate** — M2 Find Someone New
 
-**Project Phase:** Planning & MVP Development
-
-The current objective is to build, validate, and launch an MVP within a single Docker container hosted on Azure Container Apps before expanding the platform based on real user feedback.
-
----
-
-**MiddayMate**
-
-**M2 Find Someone New**
 <img width="1518" height="1036" alt="CoffeeFirstDate" src="https://github.com/user-attachments/assets/73e93e99-8c88-45ae-bc0d-33a7a176f899" />
