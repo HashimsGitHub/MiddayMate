@@ -193,6 +193,60 @@ MiddayMate/
 
 ---
 
+# Quick Start
+
+## Local Development
+
+```bash
+# 1. Clone and setup
+git clone <repo-url>
+cd MiddayMate
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Setup environment
+cp .env.example .env
+
+# 4. Seed database
+python scripts/seed_database.py
+
+# 5. Run application
+python run.py
+```
+
+Open `http://localhost:5000` in your browser.
+
+See [DEVELOPMENT.md](DEVELOPMENT.md) for detailed instructions.
+
+## Azure Deployment
+
+To deploy to Azure Container Apps:
+
+1. **Prerequisites**: Azure CLI and Docker installed
+2. **Automated Setup** (Recommended):
+   ```bash
+   # Windows PowerShell
+   .\scripts\azure_setup.ps1
+
+   # macOS/Linux
+   bash scripts/azure_setup.sh
+   ```
+3. **Manual Setup**: See [AZURE_SETUP.md](AZURE_SETUP.md) for step-by-step instructions
+
+**Quick Reference**: [AZURE_QUICK_REFERENCE.md](AZURE_QUICK_REFERENCE.md)
+
+### Key Azure Resources
+- Container Registry: `middaymatecr`
+- Storage Account: `middaymatesa`
+- SQL Server: `middaymate-sql` (optional)
+- Container App: `middaymate`
+- Region: `australiaeast`
+
+---
+
 # Documentation
 
 Project documentation is located in the **/docs** directory.
@@ -204,6 +258,12 @@ Project documentation is located in the **/docs** directory.
 * Database Design
 * API Specification
 * UI / UX Guidelines
+
+## Setup Guides
+* [Development Guide](DEVELOPMENT.md) - Local setup and development
+* [Azure Setup Guide](AZURE_SETUP.md) - Complete Azure deployment instructions
+* [Azure Quick Reference](AZURE_QUICK_REFERENCE.md) - Quick lookup for Azure commands
+* [AI Guidelines](ai/00_Code_Instructions.md) - Guidelines for AI-assisted development
 
 
 
