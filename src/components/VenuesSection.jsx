@@ -26,7 +26,6 @@ export default function VenuesSection({ venues: initialVenues, onRefresh }) {
             <h3>Nearby Venues</h3>
             <p className="venues-subtitle">Discover cafés and restaurants in your area</p>
           </div>
-          <button className="btn btn-secondary" onClick={onRefresh}>🔄 Refresh</button>
         </div>
 
         {searchTerm && (
@@ -47,18 +46,6 @@ export default function VenuesSection({ venues: initialVenues, onRefresh }) {
               </button>
             )}
           </div>
-        )}
-
-        {!searchTerm && (
-          <button
-            className="search-toggle"
-            onClick={() => {
-              setSearchTerm('')
-              setVenues(mockVenues)
-            }}
-          >
-            🔍 Search Venues
-          </button>
         )}
 
         {loading ? (
