@@ -102,7 +102,7 @@ export default function ChatModal({ onClose, currentUser }) {
             />
           </div>
           <button className="btn btn-primary" onClick={handleClose}>
-            Got it!
+            Found Someone New!
           </button>
         </div>
       </div>
