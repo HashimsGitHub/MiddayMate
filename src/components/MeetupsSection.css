@@ -124,10 +124,6 @@
   font-size: 0.95rem;
 }
 
-.meetup-card .btn {
-  width: 100%;
-}
-
 @media (max-width: 768px) {
   .meetups-section {
     padding: 1rem;

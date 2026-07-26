@@ -39,7 +39,6 @@ export default function MeetupsSection() {
                 <span className="status-indicator">✓</span>
                 <span className="status-text">{meetup.status}</span>
               </div>
-              <button className="btn btn-primary">View Details</button>
             </div>
           </div>
         </div>
