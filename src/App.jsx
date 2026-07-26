@@ -3,7 +3,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import VenuesSection from './components/VenuesSection'
 import ProfileSection from './components/ProfileSection'
-import DemoMode from './components/DemoMode'
+import ChatModal from './components/ChatModal'
 import Footer from './components/Footer'
 import { mockCurrentUser } from './mockData'
 import './App.css'
@@ -12,14 +12,11 @@ function App() {
   const [currentUser, setCurrentUser] = useState(mockCurrentUser)
   const [activeSection, setActiveSection] = useState('home')
   const [venues, setVenues] = useState([])
-  const [showDemo, setShowDemo] = useState(false)
-
-  // Demo mode with hardcoded data - no authentication needed
+  const [showChatModal, setShowChatModal] = useState(false)
 
   const fetchVenues = () => {
     // Mock venues already loaded in VenuesSection component
   }
-
 
   const handleGetStarted = () => {
     setActiveSection('venues')
@@ -33,10 +30,7 @@ function App() {
       />
 
       {activeSection === 'home' && (
-        <Hero
-          onGetStarted={handleGetStarted}
-          onDemoMode={() => setShowDemo(true)}
-        />
+        <Hero onGetStarted={handleGetStarted} />
       )}
 
       {activeSection === 'venues' && (
@@ -47,11 +41,12 @@ function App() {
         <ProfileSection
           user={currentUser}
           onUpdate={(updatedUser) => setCurrentUser(updatedUser)}
+          onShowChat={() => setShowChatModal(true)}
         />
       )}
 
-      {showDemo && (
-        <DemoMode onClose={() => setShowDemo(false)} />
+      {showChatModal && (
+        <ChatModal onClose={() => setShowChatModal(false)} currentUser={currentUser} />
       )}
 
       <Footer />

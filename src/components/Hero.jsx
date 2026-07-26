@@ -1,6 +1,6 @@
 import './Hero.css'
 
-export default function Hero({ onGetStarted, onDemoMode }) {
+export default function Hero({ onGetStarted }) {
   return (
     <section className="hero">
       <div className="hero-content">
@@ -8,7 +8,6 @@ export default function Hero({ onGetStarted, onDemoMode }) {
         <p>Discover nearby venues, browse exclusive promotions, and connect with professionals in your network.</p>
         <div className="hero-buttons">
           <button className="btn btn-primary btn-large" onClick={onGetStarted}>Explore Now</button>
-          <button className="btn btn-secondary btn-large" onClick={onDemoMode}>🎬 Watch Demo</button>
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './ProfileSection.css'
 
-export default function ProfileSection({ user, onUpdate }) {
+export default function ProfileSection({ user, onUpdate, onShowChat }) {
   const [formData, setFormData] = useState({
     name: user.name || '',
     bio: user.bio || '',
@@ -69,9 +69,16 @@ export default function ProfileSection({ user, onUpdate }) {
                 <option value="away">Away</option>
               </select>
             </div>
-            <button type="submit" className="btn btn-primary" disabled={loading}>
-              {loading ? 'Saving...' : 'Save Profile'}
-            </button>
+            <div className="form-actions">
+              <button type="submit" className="btn btn-primary" disabled={loading}>
+                {loading ? 'Saving...' : 'Save Profile'}
+              </button>
+              {onShowChat && (
+                <button type="button" className="btn btn-secondary" onClick={onShowChat}>
+                  💬 View Sample Chat
+                </button>
+              )}
+            </div>
           </form>
         </div>
       </div>
