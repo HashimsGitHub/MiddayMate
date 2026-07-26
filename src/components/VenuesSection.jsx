@@ -6,10 +6,29 @@ export default function VenuesSection({ venues: initialVenues, onRefresh }) {
   const [venues, setVenues] = useState(mockVenues)
   const [searchTerm, setSearchTerm] = useState('')
   const [loading, setLoading] = useState(false)
+  const [venuePromotions, setVenuePromotions] = useState({})
+
+  const promotions = [
+    'Buy-1-Get-1',
+    '20% Off Today',
+    'First Date on Us',
+    'Celebrate Success 50% Off',
+    'MiddayMate Offer'
+  ]
+
+  const getRandomPromotion = () => {
+    return promotions[Math.floor(Math.random() * promotions.length)]
+  }
 
   useEffect(() => {
     // Use mock data for demo
     setVenues(mockVenues)
+    // Generate random promotions for each venue
+    const promos = {}
+    mockVenues.forEach(venue => {
+      promos[venue.id] = getRandomPromotion()
+    })
+    setVenuePromotions(promos)
   }, [])
 
   const filteredVenues = venues.filter(v =>
@@ -67,9 +86,8 @@ export default function VenuesSection({ venues: initialVenues, onRefresh }) {
                   <h4 className="venue-name">{venue.name}</h4>
                   <p className="venue-address">📍 {venue.address}</p>
                   <p className="venue-description">{venue.description}</p>
-                  <div className="venue-actions">
-                    <button className="btn btn-primary">View Promotions</button>
-                    <button className="btn btn-secondary">♥ Save</button>
+                  <div className="venue-promotion">
+                    <span className="promotion-badge">✨ {venuePromotions[venue.id]}</span>
                   </div>
                 </div>
               </div>
