@@ -2,59 +2,66 @@
 export const mockVenues = [
   {
     id: 1,
-    name: 'The Espresso Bar',
+    name: 'The Expresso Bar',
     address: 'Level 5, 123 King Street, Sydney CBD',
     latitude: -33.8688,
     longitude: 151.2093,
-    description: 'Premium espresso bar with specialty coffee and fresh pastries'
+    description: 'Premium espresso bar with specialty coffee and fresh pastries',
+    image_url: 'https://middaymatesa.blob.core.windows.net/images/The_Expresso_Bar.jpg'
   },
   {
     id: 2,
-    name: 'Urban Lunch Co',
+    name: 'Urban Kitchen and Co',
     address: 'Shop 2, 456 Pitt Street, Sydney CBD',
     latitude: -33.8701,
     longitude: 151.2087,
-    description: 'Modern lunch spot with healthy bowls and wraps'
+    description: 'Modern lunch spot with healthy bowls and wraps',
+    image_url: 'https://middaymatesa.blob.core.windows.net/images/Urban_Kitchen_and_Co.jpg'
   },
   {
     id: 3,
-    name: 'The Boardroom Cafe',
+    name: 'The Boardroom Gaming Cafe',
     address: 'Level 12, 789 George Street, Sydney CBD',
     latitude: -33.8674,
     longitude: 151.2099,
-    description: 'Corporate cafe with premium WiFi and meeting spaces'
+    description: 'Corporate cafe with premium WiFi and meeting spaces',
+    image_url: 'https://middaymatesa.blob.core.windows.net/images/The_Boardroom_Gaming_Cafe.jpg'
   },
   {
     id: 4,
-    name: 'Market Street Bistro',
+    name: 'Market Bistro',
     address: '101 Market Street, Sydney CBD',
     latitude: -33.8685,
     longitude: 151.2072,
-    description: 'French-inspired bistro perfect for business lunches'
+    description: 'French-inspired bistro perfect for business lunches',
+    image_url: 'https://middaymatesa.blob.core.windows.net/images/Market_Bistro.jpg'
   },
   {
     id: 5,
-    name: 'Chase Bar & Kitchen',
+    name: 'Chase Restaurant and Lounge',
     address: 'Level 2, 321 Clarence Street, Sydney CBD',
     latitude: -33.8695,
     longitude: 151.2055,
-    description: 'Contemporary bar and kitchen with craft cocktails'
+    description: 'Contemporary bar and kitchen with craft cocktails',
+    image_url: 'https://middaymatesa.blob.core.windows.net/images/Chase_Restaurant_and_Lounge.webp'
   },
   {
     id: 6,
-    name: 'Green Leaf Organic Cafe',
+    name: 'Green Leaf Cafe and Bar',
     address: '34 Martin Place, Sydney CBD',
     latitude: -33.8650,
     longitude: 151.2112,
-    description: 'Farm-to-table cafe with organic ingredients and sustainability focus'
+    description: 'Farm-to-table cafe with organic ingredients and sustainability focus',
+    image_url: 'https://middaymatesa.blob.core.windows.net/images/Green_Leaf_Cafe_and_Bar.jpg'
   },
   {
     id: 7,
-    name: 'The Meeting Room',
+    name: 'The Meeting Place Cafe',
     address: 'Ground Floor, 654 Bourke Street, Sydney CBD',
     latitude: -33.8776,
     longitude: 151.2060,
-    description: 'Exclusive lounge for professionals with premium seating'
+    description: 'Exclusive lounge for professionals with premium seating',
+    image_url: 'https://middaymatesa.blob.core.windows.net/images/The_Meeting_Place_Cafe.jpg'
   },
   {
     id: 8,
