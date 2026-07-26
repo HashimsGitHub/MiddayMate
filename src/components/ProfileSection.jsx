@@ -9,7 +9,7 @@ export default function ProfileSection({ user, onUpdate, onShowChat }) {
     email: 'sarah.johnson@dxc.com',
     company: 'DXC',
     availability: 'available',
-    image: 'https://middaymatesa.blob.core.windows.net/images/Sarah.png'
+    image: 'https://middaymatesa.blob.core.windows.net/images/Sarah.jpg'
   }
 
   const jake = {
