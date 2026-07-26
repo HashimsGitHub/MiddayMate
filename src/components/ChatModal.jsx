@@ -94,13 +94,6 @@ export default function ChatModal({ onClose, currentUser }) {
         </div>
 
         <div className="chat-modal-footer">
-          <div className="meeting-status">
-            <img
-              src="https://middaymatesa.blob.core.windows.net/images/CoffeeFirstDate.png"
-              alt="Meeting Arranged"
-              className="meeting-status-image"
-            />
-          </div>
           <button className="btn btn-primary" onClick={handleClose}>
             Found Someone New!
           </button>

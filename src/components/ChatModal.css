@@ -196,22 +196,6 @@
   gap: 1rem;
 }
 
-.meeting-status {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.75rem;
-  overflow: hidden;
-}
-
-.meeting-status-image {
-  width: 100%;
-  height: auto;
-  max-height: 200px;
-  object-fit: cover;
-  border-radius: 0.75rem;
-  border: 2px solid var(--accent-gold);
-}
 
 .chat-modal-footer .btn {
   width: 100%;

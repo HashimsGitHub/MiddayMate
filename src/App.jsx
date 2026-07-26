@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import VenuesSection from './components/VenuesSection'
+import MeetupsSection from './components/MeetupsSection'
 import ProfileSection from './components/ProfileSection'
 import ChatModal from './components/ChatModal'
 import Footer from './components/Footer'
@@ -35,6 +36,10 @@ function App() {
 
       {activeSection === 'venues' && (
         <VenuesSection venues={venues} onRefresh={fetchVenues} />
+      )}
+
+      {activeSection === 'meetups' && (
+        <MeetupsSection />
       )}
 
       {activeSection === 'profile' && (
