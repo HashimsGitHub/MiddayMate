@@ -211,9 +211,9 @@ The next phase will add:
 
 
 
-## Live Mockup
+## Live Site (MockUp)
 
-Visit the live mockup: https://middaymate.calmsand-7d615011.australiaeast.azurecontainerapps.io/
+Visit the live site: https://middaymate.netlify.app/
 
 # Documentation
 
