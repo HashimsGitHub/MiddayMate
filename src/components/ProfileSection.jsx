@@ -6,7 +6,7 @@ export default function ProfileSection({ user, onUpdate, onShowChat }) {
 
   const sarah = {
     name: 'Sarah',
-    email: 'sarah.johnson@dxc.com',
+    jobTitle: 'Customer Relationship Manager',
     company: 'DXC',
     availability: 'available',
     image: 'https://middaymatesa.blob.core.windows.net/images/Sarah.jpg'
@@ -14,8 +14,8 @@ export default function ProfileSection({ user, onUpdate, onShowChat }) {
 
   const jake = {
     name: 'Jake',
-    email: 'jake.thompson@techcorp.com',
-    company: 'Tech Corp',
+    jobTitle: 'Division Head',
+    company: 'Macquarie Group',
     availability: 'available',
     image: 'https://middaymatesa.blob.core.windows.net/images/Jake.jpg'
   }
@@ -59,8 +59,8 @@ export default function ProfileSection({ user, onUpdate, onShowChat }) {
             </div>
             <div className="profile-info">
               <h4>{sarah.name}</h4>
+              <p className="job-title">{sarah.jobTitle}</p>
               <p className="company-name">{sarah.company}</p>
-              <p className="email">{sarah.email}</p>
               <span className="availability-badge available">● Available</span>
             </div>
           </div>
@@ -75,8 +75,8 @@ export default function ProfileSection({ user, onUpdate, onShowChat }) {
             </div>
             <div className="profile-info">
               <h4>{jake.name}</h4>
+              <p className="job-title">{jake.jobTitle}</p>
               <p className="company-name">{jake.company}</p>
-              <p className="email">{jake.email}</p>
               <span className="availability-badge available">● Available</span>
             </div>
           </div>

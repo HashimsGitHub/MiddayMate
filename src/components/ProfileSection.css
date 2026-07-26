@@ -35,12 +35,14 @@
 .profile-card {
   background: rgba(22, 27, 34, 0.5);
   backdrop-filter: blur(10px);
-  padding: 1.5rem;
   border-radius: 1rem;
   border: 1px solid var(--border-chrome);
   box-shadow: inset 0 0 40px rgba(192, 192, 192, 0.05), 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-card:hover {
@@ -49,21 +51,25 @@
 }
 
 .profile-image-wrapper {
-  margin-bottom: 1.5rem;
+  margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+  width: calc(100% + 3rem);
+  height: 280px;
+  overflow: hidden;
+  background: rgba(15, 17, 23, 0.5);
 }
 
 .profile-image {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
   object-fit: cover;
-  border: 3px solid var(--accent-gold);
-  display: inline-block;
+  display: block;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .profile-info {
-  padding: 0;
+  padding: 1.5rem;
+  flex: 1;
 }
 
 .profile-card h4 {
@@ -73,16 +79,18 @@
   letter-spacing: -0.3px;
 }
 
-.company-name {
-  color: var(--accent-gold);
-  font-size: 0.9rem;
+.job-title {
+  color: var(--text-primary);
+  font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
+  letter-spacing: 0.2px;
 }
 
-.email {
-  color: var(--text-secondary);
+.company-name {
+  color: var(--accent-gold);
   font-size: 0.85rem;
+  font-weight: 600;
   margin-bottom: 1rem;
 }
 
