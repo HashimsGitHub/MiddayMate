@@ -199,38 +199,18 @@
 .meeting-status {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  background: rgba(63, 185, 80, 0.1);
-  border: 1px solid rgba(63, 185, 80, 0.3);
+  justify-content: center;
   border-radius: 0.75rem;
-  padding: 1rem;
+  overflow: hidden;
 }
 
-.status-icon {
-  font-size: 1.5rem;
-  color: var(--success-color);
-  font-weight: 700;
-  min-width: 32px;
-  text-align: center;
-}
-
-.status-text {
-  flex: 1;
-}
-
-.status-text p {
-  margin: 0;
-  color: var(--text-primary);
-}
-
-.status-title {
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.status-details {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+.meeting-status-image {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  border: 2px solid var(--accent-gold);
 }
 
 .chat-modal-footer .btn {

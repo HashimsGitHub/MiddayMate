@@ -95,11 +95,11 @@ export default function ChatModal({ onClose, currentUser }) {
 
         <div className="chat-modal-footer">
           <div className="meeting-status">
-            <div className="status-icon">✓</div>
-            <div className="status-text">
-              <p className="status-title">Meeting Arranged</p>
-              <p className="status-details">Sarah & Jake are meeting at The Espresso Bar</p>
-            </div>
+            <img
+              src="https://middaymatesa.blob.core.windows.net/images/CoffeeFirstDate.png"
+              alt="Meeting Arranged"
+              className="meeting-status-image"
+            />
           </div>
           <button className="btn btn-primary" onClick={handleClose}>
             Got it!
