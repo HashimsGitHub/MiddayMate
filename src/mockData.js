@@ -65,11 +65,12 @@ export const mockVenues = [
   },
   {
     id: 8,
-    name: 'Chai & Co',
+    name: 'Chai and Co',
     address: '125 Castlereagh Street, Sydney CBD',
     latitude: -33.8705,
     longitude: 151.2110,
-    description: 'Trendy chai bar with Asian fusion snacks'
+    description: 'Trendy chai bar with Asian fusion snacks',
+    image_url: 'https://middaymatesa.blob.core.windows.net/images/Chai_and_Co.jpg'
   },
 ];
 
