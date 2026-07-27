@@ -1,8 +1,12 @@
 from flask import Flask, send_from_directory
 from flask_cors import CORS
 from mongoengine import connect
+from dotenv import load_dotenv
 import os
 from datetime import datetime, timedelta
+
+# Load environment variables from .env file
+load_dotenv()
 
 # MongoDB connection will be initialized in create_app
 db = None

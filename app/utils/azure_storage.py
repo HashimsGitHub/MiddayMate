@@ -34,6 +34,12 @@ def upload_image_to_azure(file, folder: str = 'vendors') -> str:
         conn_string = current_app.config.get('AZURE_STORAGE_CONNECTION_STRING')
         container_name = current_app.config.get('AZURE_STORAGE_CONTAINER', 'images')
 
+        # Debug logging
+        print(f"DEBUG - Connection string present: {bool(conn_string)}")
+        print(f"DEBUG - Connection string length: {len(conn_string) if conn_string else 0}")
+        print(f"DEBUG - Container name: {container_name}")
+        print(f"DEBUG - Connection string preview: {conn_string[:80] if conn_string else 'None'}...")
+
         if not conn_string or conn_string.strip() == '':
             raise ValueError('Azure Storage connection string not configured. Set AZURE_STORAGE_CONNECTION_STRING in .env')
 
