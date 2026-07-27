@@ -16,7 +16,7 @@ export default function VendorPortal() {
   const [imagePreview, setImagePreview] = useState(null)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
-  const [messageType, setMessageType] = useState('') // 'success' or 'error'
+  const [messageType, setMessageType] = useState('')
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -44,7 +44,7 @@ export default function VendorPortal() {
     setMessage('')
 
     try {
-      // Step 1: Register/update vendor
+      // Register vendor
       const vendorRes = await fetch('/api/vendors', {
         method: 'POST',
         headers: {
@@ -61,14 +61,14 @@ export default function VendorPortal() {
       const vendorData = await vendorRes.json()
       const vendorId = vendorData.vendor.id
 
-      // Step 2: Upload image if provided
+      // Upload image if provided
       if (image) {
-        const formDataImage = new FormData()
-        formDataImage.append('image', image)
+        const imageFormData = new FormData()
+        imageFormData.append('image', image)
 
         const imageRes = await fetch(`/api/vendors/${vendorId}/upload-image`, {
           method: 'POST',
-          body: formDataImage
+          body: imageFormData
         })
 
         if (!imageRes.ok) {
@@ -78,7 +78,7 @@ export default function VendorPortal() {
       }
 
       setMessageType('success')
-      setMessage('Vendor portal submitted successfully! We will review and approve your registration.')
+      setMessage('✓ Business registered successfully! Check the Venues section to see your listing.')
 
       // Reset form
       setFormData({
@@ -107,7 +107,7 @@ export default function VendorPortal() {
       <div className="container">
         <div className="vendor-portal-header">
           <h2>Vendor Portal</h2>
-          <p>Register your business and showcase your venues to professionals</p>
+          <p>Register your business and appear in the Venues directory</p>
         </div>
 
         {message && (
@@ -134,14 +134,14 @@ export default function VendorPortal() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="company_name">Company Name *</label>
+              <label htmlFor="company_name">Business Name *</label>
               <input
                 type="text"
                 id="company_name"
                 name="company_name"
                 value={formData.company_name}
                 onChange={handleInputChange}
-                placeholder="Enter company name"
+                placeholder="Enter business name"
                 required
               />
             </div>
@@ -213,7 +213,7 @@ export default function VendorPortal() {
 
           <div className="form-section">
             <h3>Business Image</h3>
-            <p className="form-helper-text">Upload a professional photo of your business (JPG, PNG, WebP - Max 5MB)</p>
+            <p className="form-helper-text">Upload a professional photo (JPG, PNG, WebP - Max 5MB)</p>
 
             <div className="image-upload-area">
               {imagePreview ? (
@@ -253,7 +253,7 @@ export default function VendorPortal() {
               className="btn btn-primary"
               disabled={loading}
             >
-              {loading ? 'Submitting...' : 'Submit Vendor Registration'}
+              {loading ? 'Registering...' : 'Register Business'}
             </button>
           </div>
         </form>
