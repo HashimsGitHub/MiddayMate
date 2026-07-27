@@ -39,6 +39,7 @@ def seed_database():
         print("✓ Created vendor")
 
         # Create venues
+        AZURE_IMAGE_BASE = 'https://middaymatesa.blob.core.windows.net/images'
         venues = [
             Venue(
                 name='The Espresso Bar',
@@ -47,7 +48,8 @@ def seed_database():
                 longitude=151.2093,
                 description='Premium espresso bar with specialty coffee and fresh pastries',
                 vendor_id=vendor,
-                phone='02-9999-0001'
+                phone='02-9999-0001',
+                image_url=f'{AZURE_IMAGE_BASE}/The_Expresso_Bar.jpg'
             ),
             Venue(
                 name='Urban Lunch Co',
@@ -56,7 +58,8 @@ def seed_database():
                 longitude=151.2087,
                 description='Modern lunch spot with healthy bowls and wraps',
                 vendor_id=vendor,
-                phone='02-9999-0002'
+                phone='02-9999-0002',
+                image_url=f'{AZURE_IMAGE_BASE}/Urban_Kitchen_and_Co.jpg'
             ),
             Venue(
                 name='The Boardroom Cafe',
@@ -65,7 +68,8 @@ def seed_database():
                 longitude=151.2099,
                 description='Corporate cafe with premium WiFi and meeting spaces',
                 vendor_id=vendor,
-                phone='02-9999-0003'
+                phone='02-9999-0003',
+                image_url=f'{AZURE_IMAGE_BASE}/The_Boardroom_Gaming_Cafe.jpg'
             ),
             Venue(
                 name='Market Street Bistro',
@@ -74,7 +78,8 @@ def seed_database():
                 longitude=151.2072,
                 description='French-inspired bistro perfect for business lunches',
                 vendor_id=vendor,
-                phone='02-9999-0004'
+                phone='02-9999-0004',
+                image_url=f'{AZURE_IMAGE_BASE}/Market_Bistro.jpg'
             ),
             Venue(
                 name='Chase Bar & Kitchen',
@@ -83,7 +88,8 @@ def seed_database():
                 longitude=151.2055,
                 description='Contemporary bar and kitchen with craft cocktails',
                 vendor_id=vendor,
-                phone='02-9999-0005'
+                phone='02-9999-0005',
+                image_url=f'{AZURE_IMAGE_BASE}/Chase_Restaurant_and_Lounge.webp'
             ),
             Venue(
                 name='Green Leaf Organic Cafe',
@@ -92,7 +98,8 @@ def seed_database():
                 longitude=151.2112,
                 description='Farm-to-table cafe with organic ingredients',
                 vendor_id=vendor,
-                phone='02-9999-0006'
+                phone='02-9999-0006',
+                image_url=f'{AZURE_IMAGE_BASE}/Green_Leaf_Cafe_and_Bar.jpg'
             ),
             Venue(
                 name='The Meeting Room',
@@ -101,7 +108,8 @@ def seed_database():
                 longitude=151.2060,
                 description='Exclusive lounge for professionals with premium seating',
                 vendor_id=vendor,
-                phone='02-9999-0007'
+                phone='02-9999-0007',
+                image_url=f'{AZURE_IMAGE_BASE}/The_Meeting_Place_Cafe.jpg'
             ),
             Venue(
                 name='Chai & Co',
@@ -110,7 +118,8 @@ def seed_database():
                 longitude=151.2110,
                 description='Trendy chai bar with Asian fusion snacks',
                 vendor_id=vendor,
-                phone='02-9999-0008'
+                phone='02-9999-0008',
+                image_url=f'{AZURE_IMAGE_BASE}/Chai_and_Co.jpg'
             ),
         ]
         for venue in venues:
