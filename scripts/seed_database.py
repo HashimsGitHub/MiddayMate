@@ -13,7 +13,7 @@ load_dotenv()
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app import create_app
-from app.models import User, Venue, Vendor, Promotion
+from app.models import User, Venue, Vendor, Promotion, UserRole
 
 def seed_database():
     """Populate MongoDB with demo data"""
@@ -37,6 +37,32 @@ def seed_database():
         )
         vendor.save()
         print("✓ Created vendor")
+
+        # Create demo users with profile images
+        AZURE_IMAGE_BASE = 'https://middaymatesa.blob.core.windows.net/images'
+        users = [
+            User(
+                oauth_id='demo_jake_123',
+                oauth_provider='google',
+                email='jake.professional@example.com',
+                name='Jake Chen',
+                role=UserRole.PROFESSIONAL.value,
+                profile_image_url=f'{AZURE_IMAGE_BASE}/Jake.jpg',
+                bio='CBD Professional | Coffee Enthusiast'
+            ),
+            User(
+                oauth_id='demo_sarah_456',
+                oauth_provider='google',
+                email='sarah.executive@example.com',
+                name='Sarah Thompson',
+                role=UserRole.PROFESSIONAL.value,
+                profile_image_url=f'{AZURE_IMAGE_BASE}/Sarah.jpg',
+                bio='Executive | Always looking for great lunch spots'
+            ),
+        ]
+        for user in users:
+            user.save()
+        print(f"✓ Created {len(users)} demo users")
 
         # Create venues
         AZURE_IMAGE_BASE = 'https://middaymatesa.blob.core.windows.net/images'
@@ -213,6 +239,7 @@ def seed_database():
         print("\n" + "="*50)
         print("✅ Database seeding complete!")
         print("="*50)
+        print(f"  Users: {User.objects.count()}")
         print(f"  Venues: {Venue.objects.count()}")
         print(f"  Promotions: {Promotion.objects.count()}")
         print(f"  Vendors: {Vendor.objects.count()}")
