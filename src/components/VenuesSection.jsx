@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
-import { mockVenues } from '../mockData'
 import './VenuesSection.css'
 
 export default function VenuesSection({ venues: initialVenues, onRefresh }) {
-  const [venues, setVenues] = useState(mockVenues)
+  const [venues, setVenues] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [venuePromotions, setVenuePromotions] = useState({})
 
   const promotions = [
@@ -21,15 +20,35 @@ export default function VenuesSection({ venues: initialVenues, onRefresh }) {
   }
 
   useEffect(() => {
-    // Use mock data for demo
-    setVenues(mockVenues)
-    // Generate random promotions for each venue
-    const promos = {}
-    mockVenues.forEach(venue => {
-      promos[venue.id] = getRandomPromotion()
-    })
-    setVenuePromotions(promos)
+    fetchVenues()
   }, [])
+
+  const fetchVenues = async () => {
+    try {
+      setLoading(true)
+      const response = await fetch('/api/venues')
+
+      if (response.ok) {
+        const data = await response.json()
+        setVenues(data)
+
+        // Generate random promotions for each venue
+        const promos = {}
+        data.forEach(venue => {
+          promos[venue.id] = getRandomPromotion()
+        })
+        setVenuePromotions(promos)
+      } else {
+        console.error('Failed to fetch venues')
+        setVenues([])
+      }
+    } catch (error) {
+      console.error('Error fetching venues:', error)
+      setVenues([])
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const filteredVenues = venues.filter(v =>
     v.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
