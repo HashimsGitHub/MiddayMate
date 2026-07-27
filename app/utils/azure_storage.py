@@ -29,15 +29,6 @@ def upload_image_to_azure(file, folder: str = 'vendors') -> str:
     if not _allowed_file(file.filename, allowed_extensions):
         raise ValueError(f'Invalid file type. Allowed: {", ".join(allowed_extensions)}')
 
-    # Validate file size (5MB max)
-    file.seek(0, 2)  # Seek to end
-    file_size = file.tell()
-    file.seek(0)  # Seek back to start
-
-    max_size_mb = 5
-    if file_size > max_size_mb * 1024 * 1024:
-        raise ValueError(f'File too large. Maximum size: {max_size_mb}MB')
-
     try:
         # Get Azure connection string and container name
         conn_string = current_app.config.get('AZURE_STORAGE_CONNECTION_STRING')
@@ -45,6 +36,15 @@ def upload_image_to_azure(file, folder: str = 'vendors') -> str:
 
         if not conn_string or conn_string.strip() == '':
             raise ValueError('Azure Storage connection string not configured. Set AZURE_STORAGE_CONNECTION_STRING in .env')
+
+        # Read file content
+        file.seek(0)
+        file_content = file.read()
+
+        # Validate file size (5MB max)
+        max_size_mb = 5
+        if len(file_content) > max_size_mb * 1024 * 1024:
+            raise ValueError(f'File too large. Maximum size: {max_size_mb}MB')
 
         # Create blob service client
         blob_service_client = BlobServiceClient.from_connection_string(conn_string)
@@ -56,7 +56,7 @@ def upload_image_to_azure(file, folder: str = 'vendors') -> str:
 
         # Upload to Azure
         blob_client = container_client.get_blob_client(blob_name)
-        blob_client.upload_blob(file.stream, overwrite=True)
+        blob_client.upload_blob(file_content, overwrite=True)
 
         # Return public URL
         blob_url = f'https://{blob_service_client.account_name}.blob.core.windows.net/{container_name}/{blob_name}'
