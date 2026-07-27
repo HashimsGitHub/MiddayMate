@@ -134,6 +134,19 @@ def create_app(config_name='development'):
     def health_check():
         return {'status': 'healthy'}, 200
 
+    # Debug endpoint to check Azure config
+    @app.route('/debug/azure-config', methods=['GET'])
+    def debug_azure_config():
+        conn_string = app.config.get('AZURE_STORAGE_CONNECTION_STRING', '')
+        container_name = app.config.get('AZURE_STORAGE_CONTAINER', 'images')
+        return {
+            'connection_string_present': bool(conn_string),
+            'connection_string_length': len(conn_string) if conn_string else 0,
+            'connection_string_preview': conn_string[:100] if conn_string else 'NOT SET',
+            'container_name': container_name,
+            'full_connection_string': conn_string  # WARNING: Shows credentials
+        }, 200
+
     # Serve React app
     @app.route('/', defaults={'path': ''})
     @app.route('/<path:path>')
