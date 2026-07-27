@@ -22,12 +22,13 @@ def register_vendor():
         email=data['email'],
         company_name=data['company_name'],
         address=data['address'],
-        phone=data.get('phone')
+        phone=data.get('phone'),
+        is_approved=True
     )
     vendor.save()
 
     return jsonify({
-        'message': 'Vendor registration successful, awaiting approval',
+        'message': 'Vendor registration successful! Check Venues section.',
         'vendor': vendor.to_dict()
     }), 201
 
