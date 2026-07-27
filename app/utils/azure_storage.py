@@ -43,8 +43,8 @@ def upload_image_to_azure(file, folder: str = 'vendors') -> str:
         conn_string = current_app.config.get('AZURE_STORAGE_CONNECTION_STRING')
         container_name = current_app.config.get('AZURE_STORAGE_CONTAINER', 'images')
 
-        if not conn_string:
-            raise ValueError('Azure Storage connection string not configured')
+        if not conn_string or conn_string.strip() == '':
+            raise ValueError('Azure Storage connection string not configured. Set AZURE_STORAGE_CONNECTION_STRING in .env')
 
         # Create blob service client
         blob_service_client = BlobServiceClient.from_connection_string(conn_string)
