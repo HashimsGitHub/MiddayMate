@@ -1,4 +1,4 @@
-from app import db
+from mongoengine import Document, StringField, IntField, FloatField, BooleanField, DateTimeField, ListField, ReferenceField, EmailField, URLField, EmbeddedDocument, EmbeddedDocumentField
 from datetime import datetime
 from enum import Enum
 
@@ -21,33 +21,35 @@ class InvitationStatus(str, Enum):
     DECLINED = 'declined'
     CANCELLED = 'cancelled'
 
-class User(db.Model):
-    """User model for professionals and admins."""
-    __tablename__ = 'users'
+class SocialMediaLinks(EmbeddedDocument):
+    """Embedded document for social media links."""
+    linkedin = URLField(null=True)
+    twitter = URLField(null=True)
 
-    id = db.Column(db.Integer, primary_key=True)
-    oauth_id = db.Column(db.String(255), unique=True, nullable=False)
-    oauth_provider = db.Column(db.String(50), nullable=False)  # 'microsoft' or 'google'
-    email = db.Column(db.String(255), unique=True, nullable=False)
-    name = db.Column(db.String(255), nullable=False)
-    role = db.Column(db.String(50), default=UserRole.PROFESSIONAL)
-    availability_status = db.Column(db.String(50), default=AvailabilityStatus.AWAY)
-    profile_image_url = db.Column(db.String(500), nullable=True)
-    bio = db.Column(db.Text, nullable=True)
-    social_media_links = db.Column(db.JSON, nullable=True)  # {'linkedin': '', 'twitter': ''}
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+class User(Document):
+    """User document for professionals and admins."""
+    oauth_id = StringField(unique=True, required=True)
+    oauth_provider = StringField(required=True)
+    email = EmailField(unique=True, required=True)
+    name = StringField(required=True, max_length=255)
+    role = StringField(default=UserRole.PROFESSIONAL, choices=[r.value for r in UserRole])
+    availability_status = StringField(default=AvailabilityStatus.AWAY, choices=[s.value for s in AvailabilityStatus])
+    profile_image_url = URLField(null=True)
+    bio = StringField(null=True)
+    social_media_links = EmbeddedDocumentField(SocialMediaLinks, null=True)
+    favorite_venue_ids = ListField(ReferenceField('Venue'), default=list)
+    created_at = DateTimeField(default=datetime.utcnow)
+    updated_at = DateTimeField(default=datetime.utcnow)
 
-    # Relationships
-    sent_invitations = db.relationship('Invitation', foreign_keys='Invitation.sender_id', backref='sender')
-    received_invitations = db.relationship('Invitation', foreign_keys='Invitation.recipient_id', backref='recipient')
-    messages = db.relationship('Message', backref='user', lazy='dynamic')
-    favorite_venues = db.relationship('Venue', secondary='user_favorites', backref='favorited_by')
+    meta = {
+        'collection': 'users',
+        'indexes': ['email', 'oauth_id', 'created_at']
+    }
 
     def to_dict(self):
         """Convert user to dictionary."""
         return {
-            'id': self.id,
+            'id': str(self.id),
             'name': self.name,
             'email': self.email,
             'role': self.role,
@@ -57,31 +59,29 @@ class User(db.Model):
             'created_at': self.created_at.isoformat(),
         }
 
-class Venue(db.Model):
-    """Venue model for cafés and restaurants."""
-    __tablename__ = 'venues'
+class Venue(Document):
+    """Venue document for cafés and restaurants."""
+    name = StringField(required=True, max_length=255)
+    address = StringField(required=True, max_length=500)
+    latitude = FloatField(required=True)
+    longitude = FloatField(required=True)
+    description = StringField(null=True)
+    phone = StringField(max_length=20, null=True)
+    website = URLField(null=True)
+    image_url = URLField(null=True)
+    vendor_id = ReferenceField('Vendor', required=True)
+    created_at = DateTimeField(default=datetime.utcnow)
+    updated_at = DateTimeField(default=datetime.utcnow)
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), nullable=False)
-    address = db.Column(db.String(500), nullable=False)
-    latitude = db.Column(db.Float, nullable=False)
-    longitude = db.Column(db.Float, nullable=False)
-    description = db.Column(db.Text, nullable=True)
-    phone = db.Column(db.String(20), nullable=True)
-    website = db.Column(db.String(500), nullable=True)
-    image_url = db.Column(db.String(500), nullable=True)
-    vendor_id = db.Column(db.Integer, db.ForeignKey('vendors.id'), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-
-    # Relationships
-    promotions = db.relationship('Promotion', backref='venue', lazy='dynamic', cascade='all, delete-orphan')
-    invitations = db.relationship('Invitation', backref='venue', lazy='dynamic')
+    meta = {
+        'collection': 'venues',
+        'indexes': ['vendor_id', 'created_at', ('latitude', 'longitude')]
+    }
 
     def to_dict(self):
         """Convert venue to dictionary."""
         return {
-            'id': self.id,
+            'id': str(self.id),
             'name': self.name,
             'address': self.address,
             'latitude': self.latitude,
@@ -93,27 +93,26 @@ class Venue(db.Model):
             'created_at': self.created_at.isoformat(),
         }
 
-class Vendor(db.Model):
-    """Vendor model for business owners."""
-    __tablename__ = 'vendors'
+class Vendor(Document):
+    """Vendor document for business owners."""
+    name = StringField(required=True, max_length=255)
+    email = EmailField(unique=True, required=True)
+    phone = StringField(max_length=20, null=True)
+    company_name = StringField(required=True, max_length=255)
+    address = StringField(required=True, max_length=500)
+    is_approved = BooleanField(default=False)
+    created_at = DateTimeField(default=datetime.utcnow)
+    updated_at = DateTimeField(default=datetime.utcnow)
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), nullable=False)
-    email = db.Column(db.String(255), unique=True, nullable=False)
-    phone = db.Column(db.String(20), nullable=True)
-    company_name = db.Column(db.String(255), nullable=False)
-    address = db.Column(db.String(500), nullable=False)
-    is_approved = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-
-    # Relationships
-    venues = db.relationship('Venue', backref='vendor', lazy='dynamic', cascade='all, delete-orphan')
+    meta = {
+        'collection': 'vendors',
+        'indexes': ['email', 'created_at']
+    }
 
     def to_dict(self):
         """Convert vendor to dictionary."""
         return {
-            'id': self.id,
+            'id': str(self.id),
             'name': self.name,
             'email': self.email,
             'company_name': self.company_name,
@@ -121,28 +120,30 @@ class Vendor(db.Model):
             'created_at': self.created_at.isoformat(),
         }
 
-class Promotion(db.Model):
-    """Promotion model for venue offers."""
-    __tablename__ = 'promotions'
+class Promotion(Document):
+    """Promotion document for venue offers."""
+    venue_id = ReferenceField('Venue', required=True)
+    title = StringField(required=True, max_length=255)
+    description = StringField(required=True)
+    discount_percentage = IntField(null=True, min_value=0, max_value=100)
+    discount_amount = FloatField(null=True)
+    start_date = DateTimeField(required=True)
+    end_date = DateTimeField(required=True)
+    image_url = URLField(null=True)
+    is_featured = BooleanField(default=False)
+    created_at = DateTimeField(default=datetime.utcnow)
+    updated_at = DateTimeField(default=datetime.utcnow)
 
-    id = db.Column(db.Integer, primary_key=True)
-    venue_id = db.Column(db.Integer, db.ForeignKey('venues.id'), nullable=False)
-    title = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.Text, nullable=False)
-    discount_percentage = db.Column(db.Integer, nullable=True)
-    discount_amount = db.Column(db.Float, nullable=True)
-    start_date = db.Column(db.DateTime, nullable=False)
-    end_date = db.Column(db.DateTime, nullable=False)
-    image_url = db.Column(db.String(500), nullable=True)
-    is_featured = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    meta = {
+        'collection': 'promotions',
+        'indexes': ['venue_id', 'start_date', 'end_date', 'created_at']
+    }
 
     def to_dict(self):
         """Convert promotion to dictionary."""
         return {
-            'id': self.id,
-            'venue_id': self.venue_id,
+            'id': str(self.id),
+            'venue_id': str(self.venue_id.id) if self.venue_id else None,
             'title': self.title,
             'description': self.description,
             'discount_percentage': self.discount_percentage,
@@ -154,59 +155,53 @@ class Promotion(db.Model):
             'created_at': self.created_at.isoformat(),
         }
 
-class Invitation(db.Model):
-    """Invitation model for meetup requests."""
-    __tablename__ = 'invitations'
+class Invitation(Document):
+    """Invitation document for meetup requests."""
+    sender_id = ReferenceField('User', required=True)
+    recipient_id = ReferenceField('User', required=True)
+    venue_id = ReferenceField('Venue', required=True)
+    status = StringField(default=InvitationStatus.PENDING, choices=[s.value for s in InvitationStatus])
+    message = StringField(null=True)
+    created_at = DateTimeField(default=datetime.utcnow)
+    updated_at = DateTimeField(default=datetime.utcnow)
 
-    id = db.Column(db.Integer, primary_key=True)
-    sender_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    recipient_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    venue_id = db.Column(db.Integer, db.ForeignKey('venues.id'), nullable=False)
-    status = db.Column(db.String(50), default=InvitationStatus.PENDING)
-    message = db.Column(db.Text, nullable=True)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    meta = {
+        'collection': 'invitations',
+        'indexes': ['sender_id', 'recipient_id', 'venue_id', 'status', 'created_at']
+    }
 
     def to_dict(self):
         """Convert invitation to dictionary."""
         return {
-            'id': self.id,
-            'sender_id': self.sender_id,
-            'recipient_id': self.recipient_id,
-            'venue_id': self.venue_id,
+            'id': str(self.id),
+            'sender_id': str(self.sender_id.id),
+            'recipient_id': str(self.recipient_id.id),
+            'venue_id': str(self.venue_id.id),
             'status': self.status,
             'message': self.message,
             'created_at': self.created_at.isoformat(),
         }
 
-class Message(db.Model):
-    """Message model for conversations."""
-    __tablename__ = 'messages'
+class Message(Document):
+    """Message document for conversations."""
+    invitation_id = ReferenceField('Invitation', required=True)
+    sender_id = ReferenceField('User', required=True)
+    content = StringField(required=True)
+    is_read = BooleanField(default=False)
+    created_at = DateTimeField(default=datetime.utcnow)
 
-    id = db.Column(db.Integer, primary_key=True)
-    invitation_id = db.Column(db.Integer, db.ForeignKey('invitations.id'), nullable=False)
-    sender_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    content = db.Column(db.Text, nullable=False)
-    is_read = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
-    # Relationships
-    invitation = db.relationship('Invitation', backref='messages')
+    meta = {
+        'collection': 'messages',
+        'indexes': ['invitation_id', 'sender_id', 'created_at']
+    }
 
     def to_dict(self):
         """Convert message to dictionary."""
         return {
-            'id': self.id,
-            'invitation_id': self.invitation_id,
-            'sender_id': self.sender_id,
+            'id': str(self.id),
+            'invitation_id': str(self.invitation_id.id),
+            'sender_id': str(self.sender_id.id),
             'content': self.content,
             'is_read': self.is_read,
             'created_at': self.created_at.isoformat(),
         }
-
-# Association table for user favorites
-user_favorites = db.Table(
-    'user_favorites',
-    db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
-    db.Column('venue_id', db.Integer, db.ForeignKey('venues.id'))
-)

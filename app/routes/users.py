@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify, session
 from app.models import User, AvailabilityStatus
-from app import db
 
 bp = Blueprint('users', __name__, url_prefix='/api/users')
 
@@ -12,8 +11,7 @@ def get_current_user():
     if not user_id:
         return jsonify({'error': 'Not authenticated'}), 401
 
-    user = User.query.get(user_id)
-
+    user = User.objects(id=user_id).first()
     if not user:
         return jsonify({'error': 'User not found'}), 404
 
@@ -27,8 +25,7 @@ def update_profile():
     if not user_id:
         return jsonify({'error': 'Not authenticated'}), 401
 
-    user = User.query.get(user_id)
-
+    user = User.objects(id=user_id).first()
     if not user:
         return jsonify({'error': 'User not found'}), 404
 
@@ -46,18 +43,17 @@ def update_profile():
         if data['availability_status'] in [s.value for s in AvailabilityStatus]:
             user.availability_status = data['availability_status']
 
-    db.session.commit()
+    user.save()
 
     return jsonify({
         'message': 'Profile updated',
         'user': user.to_dict()
     }), 200
 
-@bp.route('/<int:user_id>', methods=['GET'])
+@bp.route('/<user_id>', methods=['GET'])
 def get_user(user_id):
     """Get user profile by ID."""
-    user = User.query.get(user_id)
-
+    user = User.objects(id=user_id).first()
     if not user:
         return jsonify({'error': 'User not found'}), 404
 

@@ -9,10 +9,7 @@ def app():
     app = create_app('testing')
 
     with app.app_context():
-        db.create_all()
         yield app
-        db.session.remove()
-        db.drop_all()
 
 @pytest.fixture
 def client(app):
@@ -31,12 +28,13 @@ class TestUserModel:
                 email='test@example.com',
                 name='Test User'
             )
-            db.session.add(user)
-            db.session.commit()
+            user.save()
 
-            fetched = User.query.filter_by(email='test@example.com').first()
+            fetched = User.objects(email='test@example.com').first()
             assert fetched is not None
             assert fetched.name == 'Test User'
+
+            user.delete()
 
     def test_user_to_dict(self, app):
         """Test user serialization."""
@@ -47,12 +45,13 @@ class TestUserModel:
                 email='test@example.com',
                 name='Test User'
             )
-            db.session.add(user)
-            db.session.commit()
+            user.save()
 
             user_dict = user.to_dict()
             assert user_dict['name'] == 'Test User'
             assert user_dict['email'] == 'test@example.com'
+
+            user.delete()
 
 class TestVenueModel:
     """Test Venue model."""
@@ -66,22 +65,23 @@ class TestVenueModel:
                 company_name='Coffee Co',
                 address='123 Main St'
             )
-            db.session.add(vendor)
-            db.session.commit()
+            vendor.save()
 
             venue = Venue(
                 name='Test Cafe',
                 address='123 Main St',
                 latitude=-33.8688,
                 longitude=151.2093,
-                vendor_id=vendor.id
+                vendor_id=vendor
             )
-            db.session.add(venue)
-            db.session.commit()
+            venue.save()
 
-            fetched = Venue.query.filter_by(name='Test Cafe').first()
+            fetched = Venue.objects(name='Test Cafe').first()
             assert fetched is not None
-            assert fetched.vendor_id == vendor.id
+            assert fetched.vendor_id.id == vendor.id
+
+            venue.delete()
+            vendor.delete()
 
 class TestInvitationModel:
     """Test Invitation model."""
@@ -95,14 +95,15 @@ class TestInvitationModel:
                 email='user1@example.com',
                 name='User 1'
             )
+            user1.save()
+
             user2 = User(
                 oauth_id='user2',
                 oauth_provider='google',
                 email='user2@example.com',
                 name='User 2'
             )
-            db.session.add_all([user1, user2])
-            db.session.commit()
+            user2.save()
 
             vendor = Vendor(
                 name='John',
@@ -110,29 +111,32 @@ class TestInvitationModel:
                 company_name='Coffee Co',
                 address='123 Main St'
             )
-            db.session.add(vendor)
-            db.session.commit()
+            vendor.save()
 
             venue = Venue(
                 name='Test Cafe',
                 address='123 Main St',
                 latitude=-33.8688,
                 longitude=151.2093,
-                vendor_id=vendor.id
+                vendor_id=vendor
             )
-            db.session.add(venue)
-            db.session.commit()
+            venue.save()
 
             invitation = Invitation(
-                sender_id=user1.id,
-                recipient_id=user2.id,
-                venue_id=venue.id,
+                sender_id=user1,
+                recipient_id=user2,
+                venue_id=venue,
                 message='Want to grab coffee?'
             )
-            db.session.add(invitation)
-            db.session.commit()
+            invitation.save()
 
-            fetched = Invitation.query.filter_by(venue_id=venue.id).first()
+            fetched = Invitation.objects(venue_id=venue).first()
             assert fetched is not None
-            assert fetched.sender_id == user1.id
-            assert fetched.recipient_id == user2.id
+            assert fetched.sender_id.id == user1.id
+            assert fetched.recipient_id.id == user2.id
+
+            invitation.delete()
+            venue.delete()
+            vendor.delete()
+            user1.delete()
+            user2.delete()

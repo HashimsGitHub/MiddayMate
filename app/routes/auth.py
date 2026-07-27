@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify, session
 from app.models import User, UserRole
-from app import db
 
 bp = Blueprint('auth', __name__, url_prefix='/api/auth')
 
@@ -17,21 +16,18 @@ def login():
     email = data.get('email')
     name = data.get('name')
 
-    # Find or create user
-    user = User.query.filter_by(oauth_id=oauth_id, oauth_provider=oauth_provider).first()
-
+    user = User.objects(oauth_id=oauth_id, oauth_provider=oauth_provider).first()
     if not user:
         user = User(
             oauth_id=oauth_id,
             oauth_provider=oauth_provider,
             email=email,
             name=name,
-            role=UserRole.PROFESSIONAL
+            role=UserRole.PROFESSIONAL.value
         )
-        db.session.add(user)
-        db.session.commit()
+        user.save()
 
-    session['user_id'] = user.id
+    session['user_id'] = str(user.id)
     return jsonify({
         'message': 'Login successful',
         'user': user.to_dict()
@@ -51,8 +47,7 @@ def get_current_user():
     if not user_id:
         return jsonify({'error': 'Not authenticated'}), 401
 
-    user = User.query.get(user_id)
-
+    user = User.objects(id=user_id).first()
     if not user:
         return jsonify({'error': 'User not found'}), 404
 

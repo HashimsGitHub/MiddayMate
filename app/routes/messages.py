@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify, session
-from app.models import Message, Invitation, InvitationStatus
-from app import db
+from app.models import Message, Invitation, InvitationStatus, User
 
 bp = Blueprint('messages', __name__, url_prefix='/api/messages')
 
@@ -17,37 +16,31 @@ def send_message():
     if not data or not data.get('invitation_id') or not data.get('content'):
         return jsonify({'error': 'Missing required fields'}), 400
 
-    invitation_id = data['invitation_id']
-    content = data['content']
+    invitation = Invitation.objects(id=data['invitation_id']).first()
+    sender = User.objects(id=user_id).first()
 
-    invitation = Invitation.query.get(invitation_id)
+    if not invitation or not sender:
+        return jsonify({'error': 'Invitation or user not found'}), 404
 
-    if not invitation:
-        return jsonify({'error': 'Invitation not found'}), 404
-
-    # Only participants can message
-    if user_id not in [invitation.sender_id, invitation.recipient_id]:
+    if user_id not in [str(invitation.sender_id.id), str(invitation.recipient_id.id)]:
         return jsonify({'error': 'Unauthorized'}), 403
 
-    # Invitation must be accepted
-    if invitation.status != InvitationStatus.ACCEPTED:
+    if invitation.status != InvitationStatus.ACCEPTED.value:
         return jsonify({'error': 'Invitation not accepted'}), 400
 
     message = Message(
-        invitation_id=invitation_id,
-        sender_id=user_id,
-        content=content
+        invitation_id=invitation,
+        sender_id=sender,
+        content=data['content']
     )
-
-    db.session.add(message)
-    db.session.commit()
+    message.save()
 
     return jsonify({
         'message': 'Message sent',
         'data': message.to_dict()
     }), 201
 
-@bp.route('/invitation/<int:invitation_id>', methods=['GET'])
+@bp.route('/invitation/<invitation_id>', methods=['GET'])
 def get_messages(invitation_id):
     """Get all messages in an invitation conversation."""
     user_id = session.get('user_id')
@@ -55,19 +48,15 @@ def get_messages(invitation_id):
     if not user_id:
         return jsonify({'error': 'Not authenticated'}), 401
 
-    invitation = Invitation.query.get(invitation_id)
-
+    invitation = Invitation.objects(id=invitation_id).first()
     if not invitation:
         return jsonify({'error': 'Invitation not found'}), 404
 
-    # Only participants can view messages
-    if user_id not in [invitation.sender_id, invitation.recipient_id]:
+    if user_id not in [str(invitation.sender_id.id), str(invitation.recipient_id.id)]:
         return jsonify({'error': 'Unauthorized'}), 403
 
-    messages = Message.query.filter_by(invitation_id=invitation_id).order_by(Message.created_at).all()
+    messages = list(Message.objects(invitation_id=invitation).order_by('created_at'))
 
-    # Mark messages as read
-    Message.query.filter_by(invitation_id=invitation_id).update({'is_read': True})
-    db.session.commit()
+    Message.objects(invitation_id=invitation).update(is_read=True)
 
     return jsonify([m.to_dict() for m in messages]), 200

@@ -39,9 +39,6 @@ COPY . .
 # Copy built React app from builder stage
 COPY --from=react-builder /app/frontend/dist ./frontend/dist
 
-# Create directories if they don't exist
-RUN mkdir -p /app/instance
-
 # Expose port
 EXPOSE 5000
 

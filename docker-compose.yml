@@ -8,8 +8,8 @@ services:
     environment:
       FLASK_ENV: development
       FLASK_APP: run.py
-      DATABASE_URL: sqlite:///middaymate.db
-      SECRET_KEY: dev-secret-key-change-in-production
+      MONGO_URI: ${MONGO_URI}
+      SECRET_KEY: ${SECRET_KEY:-dev-secret-key-change-in-production}
     volumes:
       - .:/app
     command: python run.py

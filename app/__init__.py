@@ -1,35 +1,33 @@
 from flask import Flask, send_from_directory
-from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from mongoengine import connect
 import os
 from datetime import datetime, timedelta
 
-db = SQLAlchemy()
+# MongoDB connection will be initialized in create_app
+db = None
 
 def seed_initial_data():
     """Initialize database with sample data"""
     from app.models import User, Venue, Promotion
 
     try:
-        # Check if already seeded
-        if Venue.query.count() > 0:
+        if Venue.objects.count() > 0:
             return
 
         print("Seeding database with initial data...")
 
-        # Create users
         users = [
-            User(name='Sarah Johnson', email='sarah.johnson@dxc.com', role='user', availability_status='available'),
-            User(name='Jake Thompson', email='jake.thompson@techcorp.com', role='user', availability_status='available'),
-            User(name='Michael Chen', email='michael.chen@dxc.com', role='user', availability_status='available'),
-            User(name='Emily Rodriguez', email='emily.rodriguez@dxc.com', role='user', availability_status='busy'),
-            User(name='Lisa Wang', email='lisa.wang@financeplus.com', role='user', availability_status='away'),
-            User(name='David Kumar', email='david.kumar@consulting.com', role='user', availability_status='available'),
+            User(name='Sarah Johnson', email='sarah.johnson@dxc.com', role='professional', availability_status='available'),
+            User(name='Jake Thompson', email='jake.thompson@techcorp.com', role='professional', availability_status='available'),
+            User(name='Michael Chen', email='michael.chen@dxc.com', role='professional', availability_status='available'),
+            User(name='Emily Rodriguez', email='emily.rodriguez@dxc.com', role='professional', availability_status='busy'),
+            User(name='Lisa Wang', email='lisa.wang@financeplus.com', role='professional', availability_status='away'),
+            User(name='David Kumar', email='david.kumar@consulting.com', role='professional', availability_status='available'),
         ]
-        db.session.add_all(users)
-        db.session.flush()
+        for user in users:
+            user.save()
 
-        # Create venues
         venues = [
             Venue(name='The Espresso Bar', address='Level 5, 123 King Street, Sydney CBD',
                   latitude=-33.8688, longitude=151.2093, description='Premium espresso bar with specialty coffee and fresh pastries'),
@@ -48,10 +46,9 @@ def seed_initial_data():
             Venue(name='Chai & Co', address='125 Castlereagh Street, Sydney CBD',
                   latitude=-33.8705, longitude=151.2110, description='Trendy chai bar with Asian fusion snacks'),
         ]
-        db.session.add_all(venues)
-        db.session.flush()
+        for venue in venues:
+            venue.save()
 
-        # Create promotions
         promotions = [
             Promotion(venue_id=venues[0].id, title='Happy Hour Coffee Special',
                      description='20% off all espresso-based drinks from 2-4 PM', discount_percentage=20,
@@ -84,16 +81,15 @@ def seed_initial_data():
                      description='25% off all chai varieties this month', discount_percentage=25,
                      start_date=datetime.now(), end_date=datetime.now() + timedelta(days=30)),
         ]
-        db.session.add_all(promotions)
-        db.session.commit()
+        for promotion in promotions:
+            promotion.save()
 
         print(f"✓ Seeded {len(users)} users, {len(venues)} venues, {len(promotions)} promotions")
     except Exception as e:
         print(f"✗ Seeding failed: {str(e)}")
-        db.session.rollback()
 
 def create_app(config_name='development'):
-    """Application factory pattern."""
+    """Factory function to create and configure Flask app."""
     # Get the root path for static files
     root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     static_path = os.path.join(root_path, 'frontend', 'dist')
@@ -110,8 +106,11 @@ def create_app(config_name='development'):
 
     app.config.from_object(config)
 
+    # Initialize MongoDB connection
+    if app.config.get('MONGO_URI'):
+        connect(host=app.config['MONGO_URI'])
+
     # Initialize extensions
-    db.init_app(app)
     CORS(app)
 
     # Register blueprints
@@ -139,13 +138,10 @@ def create_app(config_name='development'):
         else:
             return {'error': 'React app not built. Run "npm run build"'}, 404
 
-    # Create tables and seed if needed
+    # Seed if needed
     with app.app_context():
-        db.create_all()
-
-        # Auto-seed if no venues exist
         from app.models import Venue
-        if Venue.query.count() == 0:
+        if Venue.objects.count() == 0:
             seed_initial_data()
 
     return app

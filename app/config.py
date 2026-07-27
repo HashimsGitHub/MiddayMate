@@ -4,7 +4,6 @@ from datetime import timedelta
 class Config:
     """Base configuration."""
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-in-production'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
     JSON_SORT_KEYS = False
 
     # Session config
@@ -21,20 +20,17 @@ class DevelopmentConfig(Config):
     """Development configuration."""
     DEBUG = True
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///middaymate.db'
+    MONGO_URI = os.environ.get('MONGO_URI')
     SESSION_COOKIE_SECURE = False
 
 class TestingConfig(Config):
     """Testing configuration."""
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+    MONGO_URI = os.environ.get('MONGO_URI')
     WTF_CSRF_ENABLED = False
 
 class ProductionConfig(Config):
     """Production configuration."""
     DEBUG = False
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
-
-    if not SQLALCHEMY_DATABASE_URI:
-        raise ValueError("DATABASE_URL environment variable not set in production")
+    MONGO_URI = os.environ.get('MONGO_URI', '')

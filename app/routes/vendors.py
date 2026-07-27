@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify, session
 from app.models import Vendor, Venue, Promotion, UserRole, User
-from app import db
 from datetime import datetime
 
 bp = Blueprint('vendors', __name__, url_prefix='/api/vendors')
@@ -14,8 +13,7 @@ def register_vendor():
     if not data or not all(field in data for field in required_fields):
         return jsonify({'error': 'Missing required fields'}), 400
 
-    # Check if vendor already exists
-    if Vendor.query.filter_by(email=data['email']).first():
+    if Vendor.objects(email=data['email']).first():
         return jsonify({'error': 'Vendor with this email already exists'}), 409
 
     vendor = Vendor(
@@ -25,53 +23,53 @@ def register_vendor():
         address=data['address'],
         phone=data.get('phone')
     )
-
-    db.session.add(vendor)
-    db.session.commit()
+    vendor.save()
 
     return jsonify({
         'message': 'Vendor registration successful, awaiting approval',
         'vendor': vendor.to_dict()
     }), 201
 
-@bp.route('/<int:vendor_id>', methods=['GET'])
+@bp.route('/<vendor_id>', methods=['GET'])
 def get_vendor(vendor_id):
     """Get vendor details."""
-    vendor = Vendor.query.get(vendor_id)
-
+    vendor = Vendor.objects(id=vendor_id).first()
     if not vendor:
         return jsonify({'error': 'Vendor not found'}), 404
 
     return jsonify(vendor.to_dict()), 200
 
-@bp.route('/<int:vendor_id>/venues', methods=['GET'])
+@bp.route('/<vendor_id>/venues', methods=['GET'])
 def get_vendor_venues(vendor_id):
     """Get venues for a vendor."""
-    vendor = Vendor.query.get(vendor_id)
-
+    vendor = Vendor.objects(id=vendor_id).first()
     if not vendor:
         return jsonify({'error': 'Vendor not found'}), 404
 
-    venues = Venue.query.filter_by(vendor_id=vendor_id).all()
+    venues = list(Venue.objects(vendor_id=vendor))
     return jsonify([v.to_dict() for v in venues]), 200
 
-@bp.route('/<int:vendor_id>/promotions', methods=['POST'])
+@bp.route('/<vendor_id>/promotions', methods=['POST'])
 def create_promotion(vendor_id):
     """Create a promotion for vendor's venue."""
-    # In a real app, verify vendor ownership
     data = request.get_json()
 
     required_fields = ['venue_id', 'title', 'description', 'start_date', 'end_date']
     if not data or not all(field in data for field in required_fields):
         return jsonify({'error': 'Missing required fields'}), 400
 
-    venue = Venue.query.get(data['venue_id'])
-    if not venue or venue.vendor_id != vendor_id:
+    vendor = Vendor.objects(id=vendor_id).first()
+    venue = Venue.objects(id=data['venue_id']).first()
+
+    if not vendor or not venue:
+        return jsonify({'error': 'Vendor or venue not found'}), 404
+
+    if str(venue.vendor_id.id) != vendor_id:
         return jsonify({'error': 'Venue not found or unauthorized'}), 404
 
     try:
         promotion = Promotion(
-            venue_id=data['venue_id'],
+            venue_id=venue,
             title=data['title'],
             description=data['description'],
             discount_percentage=data.get('discount_percentage'),
@@ -81,9 +79,7 @@ def create_promotion(vendor_id):
             image_url=data.get('image_url'),
             is_featured=data.get('is_featured', False)
         )
-
-        db.session.add(promotion)
-        db.session.commit()
+        promotion.save()
 
         return jsonify({
             'message': 'Promotion created',
@@ -93,15 +89,16 @@ def create_promotion(vendor_id):
     except ValueError as e:
         return jsonify({'error': f'Invalid date format: {str(e)}'}), 400
 
-@bp.route('/<int:vendor_id>/promotions/<int:promotion_id>', methods=['PUT'])
+@bp.route('/<vendor_id>/promotions/<promotion_id>', methods=['PUT'])
 def update_promotion(vendor_id, promotion_id):
     """Update a promotion."""
-    promotion = Promotion.query.get(promotion_id)
+    promotion = Promotion.objects(id=promotion_id).first()
+    vendor = Vendor.objects(id=vendor_id).first()
 
-    if not promotion:
-        return jsonify({'error': 'Promotion not found'}), 404
+    if not promotion or not vendor:
+        return jsonify({'error': 'Promotion or vendor not found'}), 404
 
-    if promotion.venue.vendor_id != vendor_id:
+    if str(promotion.venue_id.vendor_id.id) != vendor_id:
         return jsonify({'error': 'Unauthorized'}), 403
 
     data = request.get_json()
@@ -117,7 +114,7 @@ def update_promotion(vendor_id, promotion_id):
     if 'is_featured' in data:
         promotion.is_featured = data['is_featured']
 
-    db.session.commit()
+    promotion.save()
 
     return jsonify({
         'message': 'Promotion updated',
