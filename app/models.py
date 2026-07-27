@@ -100,6 +100,9 @@ class Vendor(Document):
     phone = StringField(max_length=20, null=True)
     company_name = StringField(required=True, max_length=255)
     address = StringField(required=True, max_length=500)
+    description = StringField(null=True)
+    website = URLField(null=True)
+    image_url = URLField(null=True)
     is_approved = BooleanField(default=False)
     created_at = DateTimeField(default=datetime.utcnow)
     updated_at = DateTimeField(default=datetime.utcnow)
@@ -116,6 +119,11 @@ class Vendor(Document):
             'name': self.name,
             'email': self.email,
             'company_name': self.company_name,
+            'phone': self.phone,
+            'address': self.address,
+            'description': self.description,
+            'website': self.website,
+            'image_url': self.image_url,
             'is_approved': self.is_approved,
             'created_at': self.created_at.isoformat(),
         }

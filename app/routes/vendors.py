@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, session
 from app.models import Vendor, Venue, Promotion, UserRole, User
+from app.utils.azure_storage import upload_image_to_azure
 from datetime import datetime
 
 bp = Blueprint('vendors', __name__, url_prefix='/api/vendors')
@@ -119,4 +120,57 @@ def update_promotion(vendor_id, promotion_id):
     return jsonify({
         'message': 'Promotion updated',
         'promotion': promotion.to_dict()
+    }), 200
+
+@bp.route('/<vendor_id>/upload-image', methods=['POST'])
+def upload_vendor_image(vendor_id):
+    """Upload vendor profile image."""
+    vendor = Vendor.objects(id=vendor_id).first()
+    if not vendor:
+        return jsonify({'error': 'Vendor not found'}), 404
+
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image file provided'}), 400
+
+    file = request.files['image']
+
+    try:
+        image_url = upload_image_to_azure(file, folder='vendors')
+        vendor.image_url = image_url
+        vendor.save()
+
+        return jsonify({
+            'message': 'Image uploaded successfully',
+            'image_url': image_url,
+            'vendor': vendor.to_dict()
+        }), 200
+
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+
+@bp.route('/<vendor_id>', methods=['PUT'])
+def update_vendor(vendor_id):
+    """Update vendor profile."""
+    vendor = Vendor.objects(id=vendor_id).first()
+    if not vendor:
+        return jsonify({'error': 'Vendor not found'}), 404
+
+    data = request.get_json()
+
+    if 'name' in data:
+        vendor.name = data['name']
+    if 'address' in data:
+        vendor.address = data['address']
+    if 'description' in data:
+        vendor.description = data['description']
+    if 'phone' in data:
+        vendor.phone = data['phone']
+    if 'website' in data:
+        vendor.website = data['website']
+
+    vendor.save()
+
+    return jsonify({
+        'message': 'Vendor profile updated',
+        'vendor': vendor.to_dict()
     }), 200

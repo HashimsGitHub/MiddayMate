@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import VenuesSection from './components/VenuesSection'
 import MeetupsSection from './components/MeetupsSection'
 import ProfileSection from './components/ProfileSection'
+import VendorPortal from './pages/VendorPortal'
 import ChatModal from './components/ChatModal'
 import Footer from './components/Footer'
 import { mockCurrentUser } from './mockData'
@@ -48,6 +49,10 @@ function App() {
           onUpdate={(updatedUser) => setCurrentUser(updatedUser)}
           onShowChat={() => setShowChatModal(true)}
         />
+      )}
+
+      {activeSection === 'vendor-portal' && (
+        <VendorPortal />
       )}
 
       {showChatModal && (

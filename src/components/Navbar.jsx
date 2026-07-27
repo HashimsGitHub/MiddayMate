@@ -13,6 +13,7 @@ export default function Navbar({ activeSection, onNavigate }) {
           <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('venues'); }} className="nav-link">Venues</a>
           <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('profile'); }} className="nav-link">Profile</a>
           <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('meetups'); }} className="nav-link">MeetUps</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('vendor-portal'); }} className="nav-link">Vendor Portal</a>
         </div>
       </div>
     </nav>
